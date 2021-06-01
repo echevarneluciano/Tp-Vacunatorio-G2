@@ -10,12 +10,12 @@ package Vacunatorio.clases;
  * @author Guido Caballero
  */
 public class Vacuna {
-    int idVacuna;
-    String nombre;
-    Laboratorio laboratorio;
-    int nroSerie;
-    boolean estado;
-
+    private int idVacuna;
+    private String nombre;
+    private Laboratorio laboratorio;
+    private int nroSerie;
+    private boolean estado;
+    
     public Vacuna() {
     }
     public Vacuna(String nombre, Laboratorio laboratorio, int nroSerie, boolean estado) {

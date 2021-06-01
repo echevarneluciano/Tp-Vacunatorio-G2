@@ -12,30 +12,41 @@ import java.time.LocalDate;
  * @author Guido Caballero
  */
 public class Cita {
-    int id; 
-    Persona persona; 
-    Vacunatorio vacunatorio; 
-    LocalDate fechayHora;
-    String motivo;
-    boolean estado;
+    private int id; 
+    private Persona persona; 
+    private Vacunatorio vacunatorio; 
+    private Vacuna vacuna;
+    private LocalDate fechayHora;
+    private String motivo;
+    private boolean estado;
 
-    public Cita(int id, Persona persona, Vacunatorio vacunatorio, LocalDate fechayHora, String motivo, boolean estado) {
+    public Cita(int id, Persona persona, Vacunatorio vacunatorio, LocalDate fechayHora, String motivo, boolean estado,Vacuna vacuna) {
         this.id = id;
         this.persona = persona;
         this.vacunatorio = vacunatorio;
         this.fechayHora = fechayHora;
         this.motivo = motivo;
         this.estado = estado;
+        this.vacuna=vacuna;
     }
-    public Cita(Persona persona, Vacunatorio vacunatorio, LocalDate fechayHora, String motivo, boolean estado) {
+    public Cita(Persona persona, Vacunatorio vacunatorio, LocalDate fechayHora, String motivo, boolean estado,Vacuna vacuna) {
         this.id = -1;
         this.persona = persona;
         this.vacunatorio = vacunatorio;
         this.fechayHora = fechayHora;
         this.motivo = motivo;
         this.estado = estado;
+        this.vacuna=vacuna;
     }
     public Cita() {
+    }
+
+    public Vacuna getVacuna() {
+        return vacuna;
+    }
+
+    public void setVacuna(Vacuna vacuna) {
+        this.vacuna = vacuna;
     }
 
     public int getId() {

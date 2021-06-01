@@ -10,26 +10,37 @@ package Vacunatorio.clases;
  * @author Guido Caballero
  */
 public class Vacunatorio {
-    int idVacunatorio; 
-    String nombre; 
-    String localidad;
-    String calle; 
-    int altura;
+    private int idVacunatorio; 
+    private String nombre; 
+    private String localidad;
+    private String calle; 
+    private int altura;
+    private boolean estado;
 
     public Vacunatorio() {
     }
-    public Vacunatorio(String nombre, String localidad, String calle, int altura) {
+    public Vacunatorio(String nombre, String localidad, String calle, int altura,boolean estado) {
         this.nombre = nombre;
         this.localidad = localidad;
         this.calle = calle;
         this.altura = altura;
+        this.estado=estado;
     }
-    public Vacunatorio(int idVacunatorio, String nombre, String localidad, String calle, int altura) {
+    public Vacunatorio(int idVacunatorio, String nombre, String localidad, String calle, int altura,boolean estado) {
         this.idVacunatorio = idVacunatorio;
         this.nombre = nombre;
         this.localidad = localidad;
         this.calle = calle;
         this.altura = altura;
+        this.estado=estado;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public void setIdVacunatorio(int idVacunatorio) {

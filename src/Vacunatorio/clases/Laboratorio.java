@@ -11,23 +11,34 @@ package Vacunatorio.clases;
  */
 public class Laboratorio {
     
-    int idLaboratorio;
-    String nombre;
-    String paisOrigen;
-    String direccion;
+    private int idLaboratorio;
+    private String nombre;
+    private String paisOrigen;
+    private String direccion;
+    private boolean estado;
 
     public Laboratorio() {
     }
-    public Laboratorio(String nombre, String paisOrigen, String direccion) {
+    public Laboratorio(String nombre, String paisOrigen, String direccion,boolean estado) {
         this.nombre = nombre;
         this.paisOrigen = paisOrigen;
         this.direccion = direccion;
+        this.estado=estado;
     }
-    public Laboratorio(int idLaboratorio, String nombre, String paisOrigen, String direccion) {
+    public Laboratorio(int idLaboratorio, String nombre, String paisOrigen, String direccion,boolean estado) {
         this.idLaboratorio = idLaboratorio;
         this.nombre = nombre;
         this.paisOrigen = paisOrigen;
         this.direccion = direccion;
+        this.estado=estado;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public int getIdLaboratorio() {

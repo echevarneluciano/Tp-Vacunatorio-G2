@@ -13,21 +13,22 @@ import java.util.ArrayList;
  * @author Guido Caballero
  */
 public class Persona {
-    int idPersona;
-    String nombre;
-    String apellido;
-    String email;
-    int dni;
-    int telefono;
-    Laboral trabajo;
-    ArrayList<Patologia> patologias;
-    String direccion;
-    String localidad;
-    LocalDate fechaNac;
+    private int idPersona;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private int dni;
+    private int telefono;
+    private Laboral trabajo;
+    private ArrayList<Patologia> patologias;
+    private String direccion;
+    private String localidad;
+    private LocalDate fechaNac;
+    private boolean estado;
 
     public Persona() {
     }
-    public Persona(String nombre, String apellido, String email, int dni, int telefono, Laboral trabajo, ArrayList<Patologia> patologias, String direccion, String localidad, LocalDate fechaNac) {
+    public Persona(String nombre, String apellido, String email, int dni, int telefono, Laboral trabajo, ArrayList<Patologia> patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -38,8 +39,9 @@ public class Persona {
         this.direccion = direccion;
         this.localidad = localidad;
         this.fechaNac = fechaNac;
+        this.estado=estado;
     }
-    public Persona(int idPersona, String nombre, String apellido, String email, int dni, int telefono, Laboral trabajo, ArrayList<Patologia> patologias, String direccion, String localidad, LocalDate fechaNac) {
+    public Persona(int idPersona, String nombre, String apellido, String email, int dni, int telefono, Laboral trabajo, ArrayList<Patologia> patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -51,6 +53,15 @@ public class Persona {
         this.direccion = direccion;
         this.localidad = localidad;
         this.fechaNac = fechaNac;
+        this.estado=estado;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public int getIdPersona() {

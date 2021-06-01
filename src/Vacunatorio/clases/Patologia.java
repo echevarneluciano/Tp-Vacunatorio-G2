@@ -11,12 +11,28 @@ package Vacunatorio.clases;
  */
 public class Patologia {
     
-    int idPatologia;
-    String nombre;
+    private int idPatologia;
+    private String nombre;
+    private boolean estado;
 
-    public Patologia(int idPatologia, String nombre) {
+    public Patologia(int idPatologia, String nombre,boolean estado) {
         this.idPatologia = idPatologia;
         this.nombre = nombre;
+        this.estado=estado;
+    }
+    public Patologia(String nombre,boolean estado) {
+        this.estado=estado;
+        this.nombre = nombre;
+    }
+    public Patologia(){
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public int getIdPatologia() {

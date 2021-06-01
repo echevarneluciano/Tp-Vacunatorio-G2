@@ -11,12 +11,27 @@ package Vacunatorio.clases;
  */
 public class Laboral {
     
-    int idTrabajo;
-    String nombre;
+    private int idTrabajo;
+    private String nombre;
+    private boolean estado;
 
-    public Laboral(int idTrabajo, String nombre) {
+    public Laboral(int idTrabajo, String nombre,boolean estado) {
         this.idTrabajo = idTrabajo;
         this.nombre = nombre;
+        this.estado=estado;
+    }
+    public Laboral(String nombre,boolean estado) {
+        this.nombre = nombre;
+        this.estado=estado;
+    }
+    public Laboral(){}
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public int getIdTrabajo() {
