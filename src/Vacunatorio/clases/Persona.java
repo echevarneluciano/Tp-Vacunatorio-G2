@@ -6,7 +6,6 @@
 package Vacunatorio.clases;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  *
@@ -20,15 +19,17 @@ public class Persona {
     private int dni;
     private int telefono;
     private String trabajo;
-    private ArrayList<Patologia> patologias;
+    private Patologia patologias;
     private String direccion;
     private String localidad;
     private LocalDate fechaNac;
     private boolean estado;
+    private float peso;
+    private float altura;
 
     public Persona() {
     }
-    public Persona(String nombre, String apellido, String email, int dni, int telefono, String trabajo, ArrayList<Patologia> patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado) {
+    public Persona(String nombre, String apellido, String email, int dni, int telefono, String trabajo, Patologia patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado,float peso,float altura) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -40,8 +41,10 @@ public class Persona {
         this.localidad = localidad;
         this.fechaNac = fechaNac;
         this.estado=estado;
+        this.peso=peso;
+        this.altura=altura;
     }
-    public Persona(int idPersona, String nombre, String apellido, String email, int dni, int telefono, String trabajo, ArrayList<Patologia> patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado) {
+    public Persona(int idPersona, String nombre, String apellido, String email, int dni, int telefono, String trabajo, Patologia patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado,float peso,float altura) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -54,6 +57,24 @@ public class Persona {
         this.localidad = localidad;
         this.fechaNac = fechaNac;
         this.estado=estado;
+        this.peso=peso;
+        this.altura=altura;
+    }
+
+    public float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(float peso) {
+        this.peso = peso;
+    }
+
+    public float getAltura() {
+        return altura;
+    }
+
+    public void setAltura(float altura) {
+        this.altura = altura;
     }
 
     public boolean isEstado() {
@@ -85,7 +106,7 @@ public class Persona {
     public String getTrabajo() {
         return trabajo;
     }
-    public ArrayList<Patologia> getPatologias() {
+    public Patologia getPatologias() {
         return patologias;
     }
     public String getDireccion() {
@@ -119,7 +140,7 @@ public class Persona {
     public void setTrabajo(String trabajo) {
         this.trabajo = trabajo;
     }
-    public void setPatologias(ArrayList<Patologia> patologias) {
+    public void setPatologias(Patologia patologias) {
         this.patologias = patologias;
     }
     public void setDireccion(String direccion) {
