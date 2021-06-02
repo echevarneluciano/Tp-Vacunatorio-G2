@@ -19,7 +19,7 @@ public class Persona {
     private String email;
     private int dni;
     private int telefono;
-    private Laboral trabajo;
+    private String trabajo;
     private ArrayList<Patologia> patologias;
     private String direccion;
     private String localidad;
@@ -28,7 +28,7 @@ public class Persona {
 
     public Persona() {
     }
-    public Persona(String nombre, String apellido, String email, int dni, int telefono, Laboral trabajo, ArrayList<Patologia> patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado) {
+    public Persona(String nombre, String apellido, String email, int dni, int telefono, String trabajo, ArrayList<Patologia> patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -41,7 +41,7 @@ public class Persona {
         this.fechaNac = fechaNac;
         this.estado=estado;
     }
-    public Persona(int idPersona, String nombre, String apellido, String email, int dni, int telefono, Laboral trabajo, ArrayList<Patologia> patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado) {
+    public Persona(int idPersona, String nombre, String apellido, String email, int dni, int telefono, String trabajo, ArrayList<Patologia> patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -82,7 +82,7 @@ public class Persona {
     public int getTelefono() {
         return telefono;
     }
-    public Laboral getTrabajo() {
+    public String getTrabajo() {
         return trabajo;
     }
     public ArrayList<Patologia> getPatologias() {
@@ -116,7 +116,7 @@ public class Persona {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-    public void setTrabajo(Laboral trabajo) {
+    public void setTrabajo(String trabajo) {
         this.trabajo = trabajo;
     }
     public void setPatologias(ArrayList<Patologia> patologias) {
