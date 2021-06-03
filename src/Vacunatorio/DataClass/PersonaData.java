@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vacunatorio.clases.datas;
+package Vacunatorio.DataClass;
 
 import Vacunatorio.clases.Persona;
+import Vacunatorio.clases.datas.Conexion;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
