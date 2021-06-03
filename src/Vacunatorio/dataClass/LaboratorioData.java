@@ -27,7 +27,7 @@ public class LaboratorioData {
         try {
             this.con =  conn.getConexion();
         }catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion.");
+            JOptionPane.showMessageDialog(null,"Error al conectar con la base de datos");
         }
     }
     
@@ -66,7 +66,7 @@ public class LaboratorioData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion al actializar el laboratorio");
+            JOptionPane.showMessageDialog(null,"Error de conexion al intentar actualizar los datos");
         }
     }
     public void modificarEstado(int id){

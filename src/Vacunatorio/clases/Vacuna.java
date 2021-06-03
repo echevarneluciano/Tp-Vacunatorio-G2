@@ -11,22 +11,19 @@ package Vacunatorio.clases;
  */
 public class Vacuna {
     private int idVacuna;
-    private String nombre;
     private Laboratorio laboratorio;
     private int nroSerie;
     private boolean estado;
     
     public Vacuna() {
     }
-    public Vacuna(String nombre, Laboratorio laboratorio, int nroSerie, boolean estado) {
-        this.nombre = nombre;
+    public Vacuna(Laboratorio laboratorio, int nroSerie, boolean estado) {
         this.laboratorio = laboratorio;
         this.nroSerie = nroSerie;
         this.estado = estado;
     }
-    public Vacuna(int idVacuna, String nombre, Laboratorio laboratorio, int nroSerie, boolean estado) {
+    public Vacuna(int idVacuna, Laboratorio laboratorio, int nroSerie, boolean estado) {
         this.idVacuna = idVacuna;
-        this.nombre = nombre;
         this.laboratorio = laboratorio;
         this.nroSerie = nroSerie;
         this.estado = estado;
@@ -34,9 +31,6 @@ public class Vacuna {
 
     public int getIdVacuna() {
         return idVacuna;
-    }
-    public String getNombre() {
-        return nombre;
     }
     public Laboratorio getLaboratorio() {
         return laboratorio;
@@ -50,9 +44,6 @@ public class Vacuna {
 
     public void setIdVacuna(int idVacuna) {
         this.idVacuna = idVacuna;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
     public void setLaboratorio(Laboratorio laboratorio) {
         this.laboratorio = laboratorio;
