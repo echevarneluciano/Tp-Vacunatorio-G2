@@ -5,6 +5,7 @@
  */
 package Vacunatorio.dataClass;
 
+import Vacunatorio.clases.Patologia;
 import Vacunatorio.clases.Persona;
 import java.sql.Connection;
 import java.sql.Date;
@@ -105,7 +106,7 @@ public class PersonaData {
                 pe.setIdPersona(rs.getInt("idPersona"));
                 pe.setLocalidad(rs.getString("localidad"));
                 pe.setNombre(rs.getString("nombre"));
-               //pe.setPatologias(rs.getInt("idPatologia")); preguntar esta
+                pe.setPatologias(this.BuscarPatologia(rs.getInt("idPatologia")));
                 pe.setPeso(rs.getFloat("peso"));
                 pe.setTelefono(rs.getInt("telefono"));
                 pe.setTrabajo(rs.getString("trabajo"));
@@ -134,7 +135,7 @@ public class PersonaData {
                 pe.setIdPersona(rs.getInt("idPersona"));
                 pe.setLocalidad(rs.getString("localidad"));
                 pe.setNombre(rs.getString("nombre"));
-               //pe.setPatologias(rs.getInt("idPatologia")); preguntar esta
+                pe.setPatologias(this.BuscarPatologia(rs.getInt("idPatologia")));
                 pe.setPeso(rs.getFloat("peso"));
                 pe.setTelefono(rs.getInt("telefono"));
                 pe.setTrabajo(rs.getString("trabajo"));
@@ -143,5 +144,22 @@ public class PersonaData {
             JOptionPane.showMessageDialog(null,"Error de conexion.");
         }
         return personas;
+    }
+    public Patologia BuscarPatologia(int id){
+        Patologia pato=new Patologia();
+        String sql = "SELECT l.* FROM patologia AS l, persona AS per WHERE l.idPatologia=per.idPatologia AND per.idPersona=?";
+        try{
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                pato.setEstado(rs.getBoolean("estado"));
+                pato.setNombre(rs.getString("Nombre"));
+                pato.setIdPatologia(rs.getInt("idPatologia"));
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error de conexion al buscar laboratoratorios desde el registro de vacuna");
+        }
+    return pato;
     }
 }
