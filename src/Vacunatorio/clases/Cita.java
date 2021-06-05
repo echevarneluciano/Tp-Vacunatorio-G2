@@ -5,7 +5,10 @@
  */
 package Vacunatorio.clases;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  *
@@ -16,11 +19,11 @@ public class Cita {
     private Persona persona; 
     private Vacunatorio vacunatorio; 
     private Vacuna vacuna;
-    private LocalDate fechayHora;
+    private Instant fechayHora;
     private String motivo;
     private boolean estado;
 
-    public Cita(int id, Persona persona, Vacunatorio vacunatorio, LocalDate fechayHora, String motivo, boolean estado,Vacuna vacuna) {
+    public Cita(int id, Persona persona, Vacunatorio vacunatorio, Instant fechayHora, String motivo, boolean estado,Vacuna vacuna) {
         this.id = id;
         this.persona = persona;
         this.vacunatorio = vacunatorio;
@@ -29,7 +32,7 @@ public class Cita {
         this.estado = estado;
         this.vacuna=vacuna;
     }
-    public Cita(Persona persona, Vacunatorio vacunatorio, LocalDate fechayHora, String motivo, boolean estado,Vacuna vacuna) {
+    public Cita(Persona persona, Vacunatorio vacunatorio, Instant fechayHora, String motivo, boolean estado,Vacuna vacuna) {
         this.id = -1;
         this.persona = persona;
         this.vacunatorio = vacunatorio;
@@ -58,7 +61,7 @@ public class Cita {
     public Vacunatorio getVacunatorio() {
         return vacunatorio;
     }
-    public LocalDate getFechayHora() {
+    public Instant getFechayHora() {
         return fechayHora;
     }
     public String getMotivo() {
@@ -77,7 +80,7 @@ public class Cita {
     public void setVacunatorio(Vacunatorio vacunatorio) {
         this.vacunatorio = vacunatorio;
     }
-    public void setFechayHora(LocalDate fechayHora) {
+    public void setFechayHora(Instant fechayHora) {
         this.fechayHora = fechayHora;
     }
     public void setMotivo(String motivo) {

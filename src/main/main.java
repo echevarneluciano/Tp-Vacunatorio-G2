@@ -7,6 +7,7 @@ package main;
 
 import Vacunatorio.clases.*;
 import Vacunatorio.dataClass.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,15 +21,23 @@ public class main {
     public static void main(String[] args) {
         LaboratorioData labData = null;
         VacunaData vacData = null;
+        CitaData citData = null;
+        VacunatorioData vacuData = null;
+        PersonaData perData = null;
         try {
             Conexion con = new Conexion();
             labData = new LaboratorioData(con);
             vacData = new VacunaData(con);
+            citData = new CitaData(con);
+            vacuData = new VacunatorioData(con);
+            perData = new PersonaData(con);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
+         
+         
+         
         
         
         //PRUEBAS -> Laboratorio LaboratorioData
@@ -85,6 +94,29 @@ public class main {
 //        vac3 = vacData.buscarVacuna(2);
 //        System.out.println("Vacuna extraida, ID: "+vac3.getIdVacuna()+" - Numero de serie: "+vac3.getNroSerie()+" - estado(MODIFICADO): "+vac3.isEstado());
         
+//        PRUEBAS -> Cita CitaData
+//        Cita cit, cit2,cit3; 
+//        cit =new Cita(perData.buscarPersonaId(3),vacuData.buscarVacunatorio(1), LocalDate.now(), "llegaron dosis", true, vacData.buscarVacuna(1));
+         
+//       Ingresar Cita
+//       citData.ingresarCita(cit);
+//       System.out.println("Cita extraida 1: "+ citData.buscarCita(5).getMotivo());
+         
+//       Traer cita por persona
+//       System.out.println("Cita De Persona -> id 1 : "+ citData.obtenerCitaDePersona(3).getPersona().getNombre() + " fecha " + citData.obtenerCitaDePersona(3).getFechayHora());
+         
+         //Cita por vacuna
+//       Vacuna vacuna = vacData.buscarVacuna(1);
+//       System.out.println("Citas filtradas por vacuna "+vacuna.getNroSerie()+": ");
+//       for(Cita ct: citData.obtenerCitasPorVacunatorioVacuna(vacuna.getIdVacuna(), true)){
+//           System.out.println("fecha: "+ct.getFechayHora()+" - Vacuna: "+ct.getVacuna().getNroSerie());
+//       }
+         
+//       Vacunatorio vacunatorio = vacuData.buscarVacunatorio(1);
+//       System.out.println("Citas filtradas por vacunatorio "+vacunatorio.getNombre()+": ");
+//       for(Cita ct: citData.obtenerCitasPorVacunatorioVacuna(vacunatorio.getIdVacunatorio(), false)){
+//           System.out.println("fecha: "+ct.getFechayHora()+" - Vacunatorio: "+ct.getVacunatorio().getNombre());
+//       }
 
     }
 }

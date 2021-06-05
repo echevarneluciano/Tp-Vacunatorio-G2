@@ -116,6 +116,36 @@ public class PersonaData {
         }
         return pe;
     }
+    
+    public Persona buscarPersonaId (int id){
+        Persona pe=new Persona();
+        String sql="SELECT * FROM `persona` WHERE persona.idPersona=?";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                pe.setAltura(rs.getFloat("altura"));
+                pe.setApellido(rs.getString("apellido"));
+                pe.setDireccion(rs.getString("direccion"));
+                pe.setDni(rs.getInt("dni"));
+                pe.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                pe.setEmail(rs.getString("email"));
+                pe.setEstado(rs.getBoolean("estado"));
+                pe.setIdPersona(rs.getInt("idPersona"));
+                pe.setLocalidad(rs.getString("localidad"));
+                pe.setNombre(rs.getString("nombre"));
+                pe.setPatologias(this.BuscarPatologia(rs.getInt("idPatologia")));
+                pe.setPeso(rs.getFloat("peso"));
+                pe.setTelefono(rs.getInt("telefono"));
+                pe.setTrabajo(rs.getString("trabajo"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion.");
+        }
+        return pe;
+    }
+    
     public List<Persona> obtenerPersonas(){
         Persona pe;
         ArrayList<Persona> personas=new ArrayList<>();        
