@@ -38,8 +38,7 @@ public class main {
          
          
 //System.out.println("cantidad de dosis aplicadas en : "+ vacuData.cantidadDeDosisAplicadasEnVacunatorio(1));
-        
-        
+
         //PRUEBAS -> Laboratorio LaboratorioData
 //        Laboratorio lab, lab2;
 //        lab = new Laboratorio ("Ruso","Rusia","Calle falsa 123",true);
@@ -102,22 +101,26 @@ public class main {
 //       citData.ingresarCita(cit);
 //       System.out.println("Cita extraida 1: "+ citData.buscarCita(5).getMotivo());
          
-//       Traer cita por persona
-//       System.out.println("Cita De Persona -> id 1 : "+ citData.obtenerCitaDePersona(3).getPersona().getNombre() + " fecha " + citData.obtenerCitaDePersona(3).getFechayHora());
          
          //Cita por vacuna
 //       Vacuna vacuna = vacData.buscarVacuna(1);
 //       System.out.println("Citas filtradas por vacuna "+vacuna.getNroSerie()+": ");
-//       for(Cita ct: citData.obtenerCitasPorVacunatorioVacuna(vacuna.getIdVacuna(), true)){
+//       for(Cita ct: citData.obtenerCitasPorVacunatorioVacunaPersona(vacuna.getIdVacuna(), 1)){
 //           System.out.println("fecha: "+ct.getFechayHora()+" - Vacuna: "+ct.getVacuna().getNroSerie());
 //       }
          
+//       Cita por vacunatorio
 //       Vacunatorio vacunatorio = vacuData.buscarVacunatorio(1);
 //       System.out.println("Citas filtradas por vacunatorio "+vacunatorio.getNombre()+": ");
-//       for(Cita ct: citData.obtenerCitasPorVacunatorioVacuna(vacunatorio.getIdVacunatorio(), false)){
+//       for(Cita ct: citData.obtenerCitasPorVacunatorioVacunaPersona(vacunatorio.getIdVacunatorio(), 2)){
 //           System.out.println("fecha: "+ct.getFechayHora()+" - Vacunatorio: "+ct.getVacunatorio().getNombre());
 //       }
-
+//        Persona  persona = perData.buscarPersonaId(3);
+//        System.out.println("Citas filtradas por vacunatorio "+persona.getNombre()+": ");
+//       for(Cita ct: citData.obtenerCitasPorVacunatorioVacunaPersona(persona.getIdPersona(), 3)){
+//           System.out.println("fecha: "+ct.getFechayHora()+" - Persona: "+ct.getPersona().getNombre());
+//       }
+        
 
     }
 }

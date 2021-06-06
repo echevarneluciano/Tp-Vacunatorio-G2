@@ -29,7 +29,7 @@ public class VacunatorioData {
         try {
             this.con =  conn.getConexion();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion en PersonaData.");
+            JOptionPane.showMessageDialog(null,"Error de conexion en VacunatorioData.");
         }
     }
     
@@ -85,7 +85,7 @@ public class VacunatorioData {
             ps.executeUpdate();
             ps.close();   
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion al modificar el estado del laboratorio");
+            JOptionPane.showMessageDialog(null,"Error de conexion al modificar el estado del vacunatorio");
         }
     }
     
@@ -110,7 +110,7 @@ public class VacunatorioData {
         return vc;
     }
     
-    public List<Vacunatorio> obtenerLaboratorios(){
+    public List<Vacunatorio> obtenerVacunatorios(){
         ArrayList<Vacunatorio> vcs=new ArrayList<>();        
         String sql="SELECT * FROM `vacunatorios`";
         try {
@@ -127,7 +127,7 @@ public class VacunatorioData {
                 vcs.add(vc);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de laboratorios");
+            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de vacunatorios");
         }
         return vcs;
     }
@@ -143,7 +143,7 @@ public class VacunatorioData {
                 ctd = rs.getInt("cantidad");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de laboratorios");
+            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener la cantidad de dosis");
         }      
         return ctd;
     }

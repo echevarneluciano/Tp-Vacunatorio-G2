@@ -102,7 +102,7 @@ public class CitaData {
             ps.executeUpdate();
             ps.close();   
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion al modificar el estado del laboratorio");
+            JOptionPane.showMessageDialog(null,"Error de conexion al modificar el estado de la cita");
         }
     }
     
@@ -124,7 +124,7 @@ public class CitaData {
                 ct.setId(rs.getInt("idCita"));
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion al buscar el vacunatorio ingresado");
+            JOptionPane.showMessageDialog(null,"Error de conexion al buscar la cita ingresada");
         }
         
         return ct;
@@ -150,19 +150,21 @@ public class CitaData {
                 cts.add(ct);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de laboratorios");
+            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de citas");
         }
         return cts;
     }
     
-    public List<Cita> obtenerCitasPorVacunatorioVacuna(int id, boolean vacuna){
+    public List<Cita> obtenerCitasPorVacunatorioVacunaPersona(int id, int aply){
         ArrayList<Cita> cts=new ArrayList<>(); 
         Conection();
         String sql;
-        if (vacuna)
+        if (aply == 1)
         sql="SELECT * FROM `citas` where `idVacuna`=?";
-        else
+        else if (aply == 2)
         sql="SELECT * FROM `citas` where `idVacunatorio`=?";
+        else
+        sql="SELECT * FROM `citas` where `idPersona`=?";    
         
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -180,33 +182,9 @@ public class CitaData {
                 cts.add(ct);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de laboratorios");
+            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de Citas");
         }
         
         return cts;
-    }
-    
-     public Cita obtenerCitaDePersona(int id){
-        Cita ct = new Cita();
-        Conection();
-        String sql="SELECT * FROM `citas` where `idPersona`=?";
-        
-        try {
-            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, id);
-            ResultSet rs= ps.executeQuery();
-            if(rs.next()){
-                ct.setPersona(perData.buscarPersonaId(rs.getInt("idPersona")));
-                ct.setVacunatorio(vacuData.buscarVacunatorio(rs.getInt("idVacunatorio")));
-                ct.setVacuna(vacData.buscarVacuna(rs.getInt("idVacuna")));
-                ct.setMotivo(rs.getString("motivo"));
-                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toInstant());
-                ct.setEstado(rs.getBoolean("estado"));
-                ct.setId(rs.getInt("idCita"));
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de laboratorios");
-        }
-        return ct;
     }
 }
