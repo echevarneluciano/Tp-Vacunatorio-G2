@@ -131,4 +131,20 @@ public class VacunatorioData {
         }
         return vcs;
     }
+    
+    public int cantidadDeDosisAplicadasEnVacunatorio(int id){
+        int ctd = 0;
+        String sql="SELECT COUNT(idVacunatorio) AS cantidad FROM `citas` WHERE fechYhorTurno < now() AND idVacunatorio=? ";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                ctd = rs.getInt("cantidad");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de laboratorios");
+        }      
+        return ctd;
+    }
 }

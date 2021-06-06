@@ -25,6 +25,10 @@ import Vacunatorio.dataClass.*;
 public class CitaData {
     private Connection con;
     
+    PersonaData perData = null;
+    VacunatorioData vacuData = null;
+    VacunaData vacData = null;
+    
     public CitaData(Conexion conn){
         try {
             this.con =  conn.getConexion();
@@ -32,6 +36,17 @@ public class CitaData {
             JOptionPane.showMessageDialog(null,"Error de conexion en CitaData.");
         }
     }
+    
+        public void Conection (){
+            try {
+                Conexion cont = new Conexion();
+                perData = new PersonaData(cont);
+                vacuData = new VacunatorioData(cont);
+                vacData = new VacunaData(cont);
+            } catch (ClassNotFoundException ex) {
+                 JOptionPane.showMessageDialog(null,"Error de conexion en el servidor");
+            }
+        }
     
     public void ingresarCita (Cita ct){
         String sql="INSERT INTO `citas`(`idPersona`, `idVacunatorio`, `fechYhorTurno`, `motivo`, `estado`, `idVacuna`) VALUES (?,?,?,?,?,?)";       
@@ -93,14 +108,7 @@ public class CitaData {
     
     public Cita buscarCita(int id){
         Cita ct = new Cita();
-        try {
-        Conexion cont = new Conexion();
-        PersonaData perData = null;
-        VacunatorioData vacuData = null;
-        VacunaData vacData = null;
-        perData = new PersonaData(cont);
-        vacuData = new VacunatorioData(cont);
-        vacData = new VacunaData(cont);
+        Conection();
         String sql="SELECT * FROM `citas` WHERE `idCita`=?";
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -118,23 +126,15 @@ public class CitaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error de conexion al buscar el vacunatorio ingresado");
         }
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion en el servidor");
-        }
+        
         return ct;
     }
     
     public List<Cita> obtenerCitas(){
         ArrayList<Cita> cts=new ArrayList<>();  
-        try {
-        Conexion cont = new Conexion();
-        PersonaData perData = null;
-        VacunatorioData vacuData = null;
-        VacunaData vacData = null;
-        perData = new PersonaData(cont);
-        vacuData = new VacunatorioData(cont);
-        vacData = new VacunaData(cont);
+        Conection();
         String sql="SELECT * FROM `citas`";
+        
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs= ps.executeQuery();
@@ -152,27 +152,18 @@ public class CitaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de laboratorios");
         }
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion en el servidor");
-        }
         return cts;
     }
     
     public List<Cita> obtenerCitasPorVacunatorioVacuna(int id, boolean vacuna){
-        ArrayList<Cita> cts=new ArrayList<>();  
-        try {
-        Conexion cont = new Conexion();
-        PersonaData perData = null;
-        VacunatorioData vacuData = null;
-        VacunaData vacData = null;
-        perData = new PersonaData(cont);
-        vacuData = new VacunatorioData(cont);
-        vacData = new VacunaData(cont);
+        ArrayList<Cita> cts=new ArrayList<>(); 
+        Conection();
         String sql;
         if (vacuna)
         sql="SELECT * FROM `citas` where `idVacuna`=?";
         else
         sql="SELECT * FROM `citas` where `idVacunatorio`=?";
+        
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id);
@@ -191,23 +182,15 @@ public class CitaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de laboratorios");
         }
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion en el servidor");
-        }
+        
         return cts;
     }
     
      public Cita obtenerCitaDePersona(int id){
         Cita ct = new Cita();
-        try {
-        Conexion cont = new Conexion();
-        PersonaData perData = null;
-        VacunatorioData vacuData = null;
-        VacunaData vacData = null;
-        perData = new PersonaData(cont);
-        vacuData = new VacunatorioData(cont);
-        vacData = new VacunaData(cont);
+        Conection();
         String sql="SELECT * FROM `citas` where `idPersona`=?";
+        
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id);
@@ -223,9 +206,6 @@ public class CitaData {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de laboratorios");
-        }
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion en el servidor");
         }
         return ct;
     }

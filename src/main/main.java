@@ -37,7 +37,7 @@ public class main {
         
          
          
-         
+//System.out.println("cantidad de dosis aplicadas en : "+ vacuData.cantidadDeDosisAplicadasEnVacunatorio(1));
         
         
         //PRUEBAS -> Laboratorio LaboratorioData
@@ -117,6 +117,7 @@ public class main {
 //       for(Cita ct: citData.obtenerCitasPorVacunatorioVacuna(vacunatorio.getIdVacunatorio(), false)){
 //           System.out.println("fecha: "+ct.getFechayHora()+" - Vacunatorio: "+ct.getVacunatorio().getNombre());
 //       }
+
 
     }
 }
