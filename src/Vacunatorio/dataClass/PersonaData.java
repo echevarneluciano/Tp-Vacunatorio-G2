@@ -32,7 +32,7 @@ public class PersonaData {
         }
     }
     public void ingresarPersona (Persona pe){
-        String sql="INSERT INTO `persona`(`dni`, `nombre`, `apellido`, `fechaNac`, `localidad`, `direccion`, `email`, `telefono`, `idPatologia`, `idTrabajo`, `estado`, `peso`, `altura`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";       
+        String sql="INSERT INTO `persona`(`dni`, `nombre`, `apellido`, `fechaNac`, `localidad`, `direccion`, `email`, `telefono`, `idPatologia`, `trabajo`, `estado`, `peso`, `altura`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";       
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, pe.getDni());
@@ -56,7 +56,7 @@ public class PersonaData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion en metodo ingresarPersona.");
+            JOptionPane.showMessageDialog(null,"Verificar dni, el dni ya se encuentra en el sistema");
         }
     }
     public void modificarPersona(Persona pe){

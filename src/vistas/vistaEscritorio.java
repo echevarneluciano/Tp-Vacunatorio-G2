@@ -8,6 +8,7 @@ package vistas;
 import Vacunatorio.dataClass.CitaData;
 import Vacunatorio.dataClass.Conexion;
 import Vacunatorio.dataClass.LaboratorioData;
+import Vacunatorio.dataClass.PatologiaData;
 import Vacunatorio.dataClass.PersonaData;
 import Vacunatorio.dataClass.VacunaData;
 import Vacunatorio.dataClass.VacunatorioData;
@@ -24,6 +25,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private PersonaData pd;
     private VacunaData vd;
     private VacunatorioData vtod;
+    private PatologiaData pada;
     /**
      * Creates new form escritorio
      */
@@ -40,6 +42,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
         this.pd=new PersonaData(con);
         this.vd=new VacunaData (con);
         this.vtod=new VacunatorioData(con);
+        this.pada=new PatologiaData(con);
     }
 
     /**
@@ -106,7 +109,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private void jMenuItemIngresarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIngresarPersonaActionPerformed
         jEscritorio.removeAll();
         jEscritorio.repaint();
-        vistaIngresarPersona view = new vistaIngresarPersona(pd);
+        vistaIngresarPersona view = new vistaIngresarPersona(pd,pada);
         jEscritorio.add(view);
         view.setVisible(true);
 // TODO add your handling code here:
