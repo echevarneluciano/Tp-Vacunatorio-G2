@@ -50,8 +50,6 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
         jLabel18 = new javax.swing.JLabel();
         jTdni = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jComboSexo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jDate = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
@@ -81,6 +79,9 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jBuscar = new javax.swing.JButton();
+        jBModificar = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
 
         jLabel18.setText("*solo numeros");
 
@@ -93,16 +94,6 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setText("DNI:");
-
-        jLabel2.setText("Sexo:");
-
-        jComboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Masculino", "Femenino", "Otro" }));
-        jComboSexo.setToolTipText("");
-        jComboSexo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboSexoActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Fecha de nacimiento:");
 
@@ -202,6 +193,18 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
 
         jLabel19.setText("*solo numeros");
 
+        jBuscar.setText("Buscar");
+        jBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscarActionPerformed(evt);
+            }
+        });
+
+        jBModificar.setText("Modificar");
+        jBModificar.setEnabled(false);
+
+        jLabel20.setText("*en caso de modificacion: 1.buscar,2.modificar,3.enviar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -219,7 +222,7 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jTexApellido))
-                        .addGroup(layout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel13)
@@ -235,34 +238,37 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jLabel11)))))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(225, 225, 225)
+                                        .addComponent(jButton2)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(jButton1))
+                                    .addComponent(jLabel17))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jTextAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jButton2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton1))
-                                        .addComponent(jComboPatologia, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(jLabel17)))
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jComboPatologia, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel15)
+                                .addComponent(jTdni))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jTdni)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jComboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jBuscar)
+                                    .addGap(79, 79, 79)
+                                    .addComponent(jBModificar))
+                                .addComponent(jLabel20))
+                            .addGap(34, 34, 34)
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -286,25 +292,29 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextEmail)))))))
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel15)
-                .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)
-                        .addComponent(jComboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel20))
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jBuscar)
+                            .addComponent(jBModificar)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -345,7 +355,7 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -362,10 +372,6 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
     private void jTextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextNombreActionPerformed
-
-    private void jComboSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboSexoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboSexoActionPerformed
 
     private void jTextLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextLocalidadActionPerformed
         // TODO add your handling code here:
@@ -399,7 +405,6 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
     jTextTelefono.setText("");   
     jTdni.setText("");
     jDate.setDate(null);
-    jComboSexo.setSelectedIndex(0);
     jComboPatologia.setSelectedIndex(0);
     jComboOcupacion.setSelectedIndex(0);
     
@@ -430,25 +435,50 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
     String loca=jTextLocalidad.getText();
     String email=jTextEmail.getText();
     Date fecha=jDate.getDate();
-    String sexo=(String) jComboSexo.getSelectedItem();
     String ocupa=(String) jComboOcupacion.getSelectedItem();
     Patologia pat=(Patologia) jComboPatologia.getSelectedItem();
-if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||loca==null||email==null||fecha==null||sexo==null||ocupa==null||pat==null)
+if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||loca==null||email==null||fecha==null||ocupa==null||pat==null)
 {JOptionPane.showMessageDialog(this,"Complete todos los campos");}else{
     LocalDate fe=fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     Persona pe=new Persona(nombre,ape,email,dni,telefono,ocupa,pat,dom,loca,fe,true,peso,altura);
     pd.ingresarPersona(pe);
+    this.jButton2ActionPerformed(evt);
 }
     // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
+    int dni=0;
+    try{dni=Integer.parseInt(jTdni.getText());
+    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo dni solo numeros");}
+        System.out.println(pd.buscarPersonaDni(dni).getNombre());
+    if(pd.buscarPersonaDni(dni).getApellido()==null){JOptionPane.showMessageDialog(this,"La persona no se encuentra inscripta");
+    this.jButton2ActionPerformed(evt);jBModificar.setEnabled(false);}else{
+    Persona pe=pd.buscarPersonaDni(dni);
+    jDate.setDate(java.sql.Date.valueOf(pe.getFechaNac()));
+    jTextNombre.setText(pe.getNombre());
+    jTexApellido.setText(pe.getApellido());
+    jTexDomicilio.setText(pe.getDireccion());
+    jTextLocalidad.setText(pe.getLocalidad());
+    jTextTelefono.setText(String.valueOf(pe.getTelefono()));
+    jTextEmail.setText(pe.getEmail());
+    jTextPeso.setText(String.valueOf(pe.getPeso()));
+    jTextAltura.setText(String.valueOf(pe.getAltura()));
+    jComboPatologia.setSelectedItem(pe.getPatologias());
+    jComboOcupacion.setSelectedItem(pe.getTrabajo());
+    jBModificar.setEnabled(true);
+    }    
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBModificar;
+    private javax.swing.JButton jBuscar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboOcupacion;
     private javax.swing.JComboBox<Patologia> jComboPatologia;
-    private javax.swing.JComboBox<String> jComboSexo;
     private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -461,7 +491,7 @@ if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -5,6 +5,8 @@
  */
 package Vacunatorio.clases;
 
+import java.util.Objects;
+
 /**
  *
  * @author Guido Caballero
@@ -52,6 +54,31 @@ public class Patologia {
     @Override
     public String toString() {
         return nombre;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Patologia other = (Patologia) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return true;
     }
 
 }

@@ -75,7 +75,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
 
         jMenuIngresos.setText("ABM");
 
-        jMenuItemIngresarPersona.setText("Ingresar persona");
+        jMenuItemIngresarPersona.setText("A.B.M. Persona");
         jMenuItemIngresarPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemIngresarPersonaActionPerformed(evt);

@@ -11,7 +11,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemIngresarPersona">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ingresar persona"/>
+                <Property name="text" type="java.lang.String" value="A.B.M. Persona"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemIngresarPersonaActionPerformed"/>
