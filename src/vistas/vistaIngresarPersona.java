@@ -418,14 +418,14 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     int dni=0;
-    int peso=0;
-    int altura=0;
+    float peso=0;
+    float altura=0;
     int telefono=0;
     try{dni=Integer.parseInt(jTdni.getText());
     }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo dni solo numeros");}
-    try{peso=Integer.parseInt(jTextPeso.getText());
+    try{peso=Float.parseFloat(jTextPeso.getText());
     }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo peso solo numeros");}
-    try{altura=Integer.parseInt(jTextAltura.getText());
+    try{altura=Float.parseFloat(jTextAltura.getText());
     }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo altura solo numeros");}
     try{telefono=Integer.parseInt(jTextTelefono.getText());
     }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo telefono solo numeros");}
