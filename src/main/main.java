@@ -7,6 +7,7 @@ package main;
 
 import Vacunatorio.clases.*;
 import Vacunatorio.dataClass.*;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,21 +96,22 @@ public class main {
         
 //        PRUEBAS -> Cita CitaData
 //        Cita cit, cit2,cit3; 
-//        cit =new Cita(perData.buscarPersonaId(3),vacuData.buscarVacunatorio(1), LocalDate.now(), "llegaron dosis", true, vacData.buscarVacuna(1));
-         
+//        Instant x=Instant.now();
+//        cit =new Cita(perData.buscarPersonaId(3),vacuData.buscarVacunatorio(1), x, "llegaron dosis", true, vacData.buscarVacuna(1));
+//         
 //       Ingresar Cita
 //       citData.ingresarCita(cit);
 //       System.out.println("Cita extraida 1: "+ citData.buscarCita(5).getMotivo());
-         
-         
-         //Cita por vacuna
+//         
+//         
+////         Cita por vacuna
 //       Vacuna vacuna = vacData.buscarVacuna(1);
 //       System.out.println("Citas filtradas por vacuna "+vacuna.getNroSerie()+": ");
 //       for(Cita ct: citData.obtenerCitasPorVacunatorioVacunaPersona(vacuna.getIdVacuna(), 1)){
 //           System.out.println("fecha: "+ct.getFechayHora()+" - Vacuna: "+ct.getVacuna().getNroSerie());
 //       }
-         
-//       Cita por vacunatorio
+//         
+////       Cita por vacunatorio
 //       Vacunatorio vacunatorio = vacuData.buscarVacunatorio(1);
 //       System.out.println("Citas filtradas por vacunatorio "+vacunatorio.getNombre()+": ");
 //       for(Cita ct: citData.obtenerCitasPorVacunatorioVacunaPersona(vacunatorio.getIdVacunatorio(), 2)){

@@ -354,14 +354,14 @@
     <Component class="javax.swing.JComboBox" name="jComboOcupacion">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="P. de salud"/>
-            <StringItem index="1" value="Educacion"/>
-            <StringItem index="2" value="Informal"/>
-            <StringItem index="3" value="F. armadas"/>
+          <StringArray count="5">
+            <StringItem index="0" value="Desocupado"/>
+            <StringItem index="1" value="P. de salud"/>
+            <StringItem index="2" value="Educacion"/>
+            <StringItem index="3" value="Informal"/>
+            <StringItem index="4" value="F. armadas"/>
           </StringArray>
         </Property>
-        <Property name="selectedIndex" type="int" value="-1"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <AuxValues>

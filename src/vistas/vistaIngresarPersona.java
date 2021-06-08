@@ -174,8 +174,7 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Ambito laboral:");
 
-        jComboOcupacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P. de salud", "Educacion", "Informal", "F. armadas" }));
-        jComboOcupacion.setSelectedIndex(-1);
+        jComboOcupacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desocupado", "P. de salud", "Educacion", "Informal", "F. armadas" }));
         jComboOcupacion.setToolTipText("");
 
         jButton1.setText("Enviar");
@@ -389,7 +388,7 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextAlturaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    if(JOptionPane.showConfirmDialog(null,"Desea limpiar formulario", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
+
     jTexApellido.setText("");
     jTexDomicilio.setText("");
     jTextAltura.setText("");
@@ -402,8 +401,8 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
     jDate.setDate(null);
     jComboSexo.setSelectedIndex(0);
     jComboPatologia.setSelectedIndex(0);
-    jComboOcupacion.setSelectedIndex(-1);
-    }
+    jComboOcupacion.setSelectedIndex(0);
+    
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

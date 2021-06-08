@@ -6,7 +6,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenuIngresos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ingresos"/>
+            <Property name="text" type="java.lang.String" value="ABM"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemIngresarPersona">

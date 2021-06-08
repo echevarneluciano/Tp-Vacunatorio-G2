@@ -73,7 +73,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
             .addGap(0, 544, Short.MAX_VALUE)
         );
 
-        jMenuIngresos.setText("Ingresos");
+        jMenuIngresos.setText("ABM");
 
         jMenuItemIngresarPersona.setText("Ingresar persona");
         jMenuItemIngresarPersona.addActionListener(new java.awt.event.ActionListener() {
