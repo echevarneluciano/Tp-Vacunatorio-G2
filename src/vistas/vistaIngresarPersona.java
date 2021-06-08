@@ -30,6 +30,7 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
         initComponents();
         this.pd=pd;
         this.pada=pada;
+        jComboOcupacion.setSelectedIndex(-1);
         Iterator <Patologia> it=pada.obtenerPatologias().iterator();
         jComboPatologia.addItem(null);
         while(it.hasNext()){
@@ -168,7 +169,7 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
         jComboOcupacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desocupado", "P. de salud", "Educacion", "Informal", "F. armadas" }));
         jComboOcupacion.setToolTipText("");
 
-        jButton1.setText("Enviar");
+        jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -202,8 +203,13 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
 
         jBModificar.setText("Modificar");
         jBModificar.setEnabled(false);
+        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModificarActionPerformed(evt);
+            }
+        });
 
-        jLabel20.setText("*en caso de modificacion: 1.buscar,2.modificar,3.enviar");
+        jLabel20.setText("*en caso de modificacion: 1.buscar,2.modificar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -264,8 +270,8 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
                                     .addComponent(jBuscar)
                                     .addGap(79, 79, 79)
                                     .addComponent(jBModificar))
-                                .addComponent(jLabel20))
-                            .addGap(34, 34, 34)
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(24, 24, 24)
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -292,7 +298,7 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextEmail)))))))
-                .addGap(0, 26, Short.MAX_VALUE))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,8 +412,9 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
     jTdni.setText("");
     jDate.setDate(null);
     jComboPatologia.setSelectedIndex(0);
-    jComboOcupacion.setSelectedIndex(0);
-    
+    jComboOcupacion.setSelectedIndex(-1);
+    jBModificar.setEnabled(false);
+    jTdni.setEditable(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -453,7 +460,7 @@ if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||
     }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo dni solo numeros");}
         System.out.println(pd.buscarPersonaDni(dni).getNombre());
     if(pd.buscarPersonaDni(dni).getApellido()==null){JOptionPane.showMessageDialog(this,"La persona no se encuentra inscripta");
-    this.jButton2ActionPerformed(evt);jBModificar.setEnabled(false);}else{
+    this.jButton2ActionPerformed(evt);jBModificar.setEnabled(false);jButton1.setEnabled(true);}else{
     Persona pe=pd.buscarPersonaDni(dni);
     jDate.setDate(java.sql.Date.valueOf(pe.getFechaNac()));
     jTextNombre.setText(pe.getNombre());
@@ -464,12 +471,45 @@ if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||
     jTextEmail.setText(pe.getEmail());
     jTextPeso.setText(String.valueOf(pe.getPeso()));
     jTextAltura.setText(String.valueOf(pe.getAltura()));
-    jComboPatologia.setSelectedItem(pe.getPatologias());
+    jComboPatologia.setSelectedItem((Patologia)pe.getPatologias());
     jComboOcupacion.setSelectedItem(pe.getTrabajo());
     jBModificar.setEnabled(true);
+    jButton1.setEnabled(false);
+    jTdni.setEditable(false);
     }    
         // TODO add your handling code here:
     }//GEN-LAST:event_jBuscarActionPerformed
+
+    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
+    int dni=0;
+    float peso=0;
+    float altura=0;
+    int telefono=0;
+    try{dni=Integer.parseInt(jTdni.getText());
+    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo dni solo numeros");}
+    try{peso=Float.parseFloat(jTextPeso.getText());
+    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo peso solo numeros");}
+    try{altura=Float.parseFloat(jTextAltura.getText());
+    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo altura solo numeros");}
+    try{telefono=Integer.parseInt(jTextTelefono.getText());
+    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo telefono solo numeros");}
+    String nombre=jTextNombre.getText();
+    String ape=jTexApellido.getText();
+    String dom=jTexDomicilio.getText();
+    String loca=jTextLocalidad.getText();
+    String email=jTextEmail.getText();
+    Date fecha=jDate.getDate();
+    String ocupa=(String) jComboOcupacion.getSelectedItem();
+    Patologia pat=(Patologia) jComboPatologia.getSelectedItem();
+if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||loca==null||email==null||fecha==null||ocupa==null||pat==null)
+{JOptionPane.showMessageDialog(this,"Complete todos los campos");}else{
+    LocalDate fe=fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    Persona pe=new Persona(nombre,ape,email,dni,telefono,ocupa,pat,dom,loca,fe,true,peso,altura);
+    pd.modificarPersona(pe);
+    JOptionPane.showMessageDialog(this,"Modificado con exito");
+    this.jButton2ActionPerformed(evt);}
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

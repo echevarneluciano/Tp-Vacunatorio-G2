@@ -59,7 +59,9 @@ public class Patologia {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.nombre);
+        hash = 67 * hash + this.idPatologia;
+        hash = 67 * hash + Objects.hashCode(this.nombre);
+        hash = 67 * hash + (this.estado ? 1 : 0);
         return hash;
     }
 
@@ -75,10 +77,17 @@ public class Patologia {
             return false;
         }
         final Patologia other = (Patologia) obj;
+        if (this.idPatologia != other.idPatologia) {
+            return false;
+        }
+        if (this.estado != other.estado) {
+            return false;
+        }
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
         return true;
     }
 
+    
 }
