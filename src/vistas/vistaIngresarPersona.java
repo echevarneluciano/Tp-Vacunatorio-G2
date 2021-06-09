@@ -425,6 +425,7 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
     jBModificar.setEnabled(false);
     jTdni.setEditable(true);
     jActivo.setEnabled(false);
+    jGuardar.setEnabled(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jLimpiarActionPerformed
