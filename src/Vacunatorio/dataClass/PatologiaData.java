@@ -96,6 +96,23 @@ public class PatologiaData {
         }
         return pat;
     }
+    public Patologia buscarPatologiaPorNombre(String nom){
+        Patologia pat = new Patologia();
+        String sql="SELECT * FROM `patologia` WHERE `nombre`=?";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, nom);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                pat.setNombre(rs.getString("nombre"));
+                pat.setEstado(rs.getBoolean("estado"));
+                pat.setIdPatologia(rs.getInt("idPatologia"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al buscar patologia ingresada");
+        }
+        return pat;
+    }
     public List<Patologia> obtenerPatologias(){
         ArrayList<Patologia> pats=new ArrayList<>();        
         String sql="SELECT * FROM `patologia`";

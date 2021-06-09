@@ -58,6 +58,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuIngresos = new javax.swing.JMenu();
         jMenuItemIngresarPersona = new javax.swing.JMenuItem();
+        jMenuPatologia = new javax.swing.JMenuItem();
         jMenuSistema = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,6 +83,14 @@ public class vistaEscritorio extends javax.swing.JFrame {
             }
         });
         jMenuIngresos.add(jMenuItemIngresarPersona);
+
+        jMenuPatologia.setText("A.B.M. Patologia");
+        jMenuPatologia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuPatologiaActionPerformed(evt);
+            }
+        });
+        jMenuIngresos.add(jMenuPatologia);
 
         jMenuBar1.add(jMenuIngresos);
 
@@ -114,6 +123,15 @@ public class vistaEscritorio extends javax.swing.JFrame {
         view.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemIngresarPersonaActionPerformed
+
+    private void jMenuPatologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPatologiaActionPerformed
+        jEscritorio.removeAll();
+        jEscritorio.repaint();
+        vistaPatologiaABM view = new vistaPatologiaABM (pada);
+        jEscritorio.add(view);
+        view.setVisible(true);        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuPatologiaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,6 +176,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuIngresos;
     private javax.swing.JMenuItem jMenuItemIngresarPersona;
+    private javax.swing.JMenuItem jMenuPatologia;
     private javax.swing.JMenu jMenuSistema;
     // End of variables declaration//GEN-END:variables
 }
