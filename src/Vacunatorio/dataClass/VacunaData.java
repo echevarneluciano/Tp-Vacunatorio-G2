@@ -49,17 +49,18 @@ public class VacunaData {
         }
     }
     public void actualizarVacuna(Vacuna vac){
-        String sql="UPDATE `vacuna` SET `idLaboratorio`=? ,`nroSerie`=? ,`estado`=? WHERE `idVacuna`=?";       
+        String sql="UPDATE `vacuna` SET `idLaboratorio`=? ,`nroSerie`=? ,`estado`=? WHERE `nroSerie`=?";       
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,vac.getLaboratorio().getIdLaboratorio());
             ps.setInt(2, vac.getNroSerie());
             ps.setBoolean(3, vac.isEstado());
-            ps.setInt(4, vac.getIdVacuna());
+            ps.setInt(4, vac.getNroSerie());
             ResultSet rs = ps.getGeneratedKeys();
             ps.executeUpdate();
             if(rs.next()){
                 vac.setIdVacuna(rs.getInt(1));
+                JOptionPane.showMessageDialog(null,"Vacuna modificada con exito");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -100,13 +101,13 @@ public class VacunaData {
         }
     return lab;
     }
-    public Vacuna buscarVacuna(int id){
+    public Vacuna buscarVacuna(int ns){
         Vacuna vac = new Vacuna();
-        String sql="SELECT * FROM vacuna WHERE idVacuna=?";
+        String sql="SELECT * FROM vacuna WHERE nroSerie=?";
         try {
             
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, id);
+            ps.setInt(1, ns);
             ResultSet rs= ps.executeQuery();
             if(rs.next()){
                 Laboratorio lab = this.BuscarLaboratorio(rs.getInt("idLaboratorio"));

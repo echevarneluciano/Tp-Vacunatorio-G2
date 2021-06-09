@@ -5,6 +5,8 @@
  */
 package Vacunatorio.clases;
 
+import java.util.Objects;
+
 /**
  *
  * @author Guido Caballero
@@ -65,6 +67,41 @@ public class Laboratorio {
     }
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    @Override
+    public String toString() {
+        if(this.estado)
+            return nombre + " - Act";
+        else
+           return nombre +" - No Act";
+    }
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.idLaboratorio;
+        hash = 97 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Laboratorio other = (Laboratorio) obj;
+        if (this.idLaboratorio != other.idLaboratorio) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return true;
     }
     
     

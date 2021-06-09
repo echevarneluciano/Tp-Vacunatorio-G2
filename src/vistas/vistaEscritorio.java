@@ -59,6 +59,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
         jMenuIngresos = new javax.swing.JMenu();
         jMenuItemIngresarPersona = new javax.swing.JMenuItem();
         jMenuPatologia = new javax.swing.JMenuItem();
+        jMenuVacuna = new javax.swing.JMenuItem();
         jMenuSistema = new javax.swing.JMenu();
         jMenuProgramarCita = new javax.swing.JMenuItem();
 
@@ -92,6 +93,14 @@ public class vistaEscritorio extends javax.swing.JFrame {
             }
         });
         jMenuIngresos.add(jMenuPatologia);
+
+        jMenuVacuna.setText("A.B.M. Vacuna");
+        jMenuVacuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuVacunaActionPerformed(evt);
+            }
+        });
+        jMenuIngresos.add(jMenuVacuna);
 
         jMenuBar1.add(jMenuIngresos);
 
@@ -152,6 +161,15 @@ public class vistaEscritorio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuProgramarCitaActionPerformed
 
+    private void jMenuVacunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuVacunaActionPerformed
+        jEscritorio.removeAll();
+        jEscritorio.repaint();
+        VistaVacuna view = new VistaVacuna(vd,ld);
+        jEscritorio.add(view);
+        view.setVisible(true);  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuVacunaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,5 +216,6 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuPatologia;
     private javax.swing.JMenuItem jMenuProgramarCita;
     private javax.swing.JMenu jMenuSistema;
+    private javax.swing.JMenuItem jMenuVacuna;
     // End of variables declaration//GEN-END:variables
 }

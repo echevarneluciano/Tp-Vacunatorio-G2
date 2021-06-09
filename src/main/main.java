@@ -72,8 +72,8 @@ public class main {
 //        vacData.ingresarVacuna(vac);
 //        vacData.ingresarVacuna(vac2);
 //            
-//        System.out.println("Vacuna extraida 1: "+ vacData.buscarVacuna(vac.getIdVacuna()).getNroSerie());
-//        System.out.println("Vucuna extraida 2: "+ vacData.buscarVacuna(vac2.getIdVacuna()).getNroSerie());
+//        System.out.println("Vacuna extraida 1: "+ vacData.buscarVacuna(vac.getNroSerie()).getNroSerie());
+//        System.out.println("Vucuna extraida 2: "+ vacData.buscarVacuna(vac2.getNroSerie()).getNroSerie());
 //        
 //        System.out.println("Todas las vacunas: ");
 //        for(Vacuna v:vacData.obtenerVacunas()){
