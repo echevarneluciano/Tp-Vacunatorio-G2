@@ -169,6 +169,7 @@ public class PersonaData {
                 pe.setPeso(rs.getFloat("peso"));
                 pe.setTelefono(rs.getInt("telefono"));
                 pe.setTrabajo(rs.getString("trabajo"));
+                personas.add(pe);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error de conexion.");

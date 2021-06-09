@@ -152,5 +152,10 @@ public class Persona {
     public void setFechaNac(LocalDate fechaNac) {
         this.fechaNac = fechaNac;
     }
+
+    @Override
+    public String toString() {
+        return nombre + ", " + apellido + ", " + dni + ", " + localidad;
+    }
     
 }

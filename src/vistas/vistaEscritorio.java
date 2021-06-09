@@ -60,6 +60,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
         jMenuItemIngresarPersona = new javax.swing.JMenuItem();
         jMenuPatologia = new javax.swing.JMenuItem();
         jMenuSistema = new javax.swing.JMenu();
+        jMenuProgramarCita = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +96,15 @@ public class vistaEscritorio extends javax.swing.JFrame {
         jMenuBar1.add(jMenuIngresos);
 
         jMenuSistema.setText("Sistema");
+
+        jMenuProgramarCita.setText("Programar cita");
+        jMenuProgramarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuProgramarCitaActionPerformed(evt);
+            }
+        });
+        jMenuSistema.add(jMenuProgramarCita);
+
         jMenuBar1.add(jMenuSistema);
 
         setJMenuBar(jMenuBar1);
@@ -132,6 +142,15 @@ public class vistaEscritorio extends javax.swing.JFrame {
         view.setVisible(true);        
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuPatologiaActionPerformed
+
+    private void jMenuProgramarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProgramarCitaActionPerformed
+        jEscritorio.removeAll();
+        jEscritorio.repaint();
+        vistaProgramarCita view = new vistaProgramarCita (pd,vtod);
+        jEscritorio.add(view);
+        view.setVisible(true);    
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuProgramarCitaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,6 +196,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuIngresos;
     private javax.swing.JMenuItem jMenuItemIngresarPersona;
     private javax.swing.JMenuItem jMenuPatologia;
+    private javax.swing.JMenuItem jMenuProgramarCita;
     private javax.swing.JMenu jMenuSistema;
     // End of variables declaration//GEN-END:variables
 }
