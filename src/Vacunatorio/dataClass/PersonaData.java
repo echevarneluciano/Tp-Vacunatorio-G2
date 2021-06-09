@@ -106,7 +106,7 @@ public class PersonaData {
                 pe.setIdPersona(rs.getInt("idPersona"));
                 pe.setLocalidad(rs.getString("localidad"));
                 pe.setNombre(rs.getString("nombre"));
-                pe.setPatologias(this.BuscarPatologia(rs.getInt("idPatologia")));
+                pe.setPatologias(this.BuscarPatologiaPorDni(rs.getInt("dni")));
                 pe.setPeso(rs.getFloat("peso"));
                 pe.setTelefono(rs.getInt("telefono"));
                 pe.setTrabajo(rs.getString("trabajo"));
@@ -135,7 +135,7 @@ public class PersonaData {
                 pe.setIdPersona(rs.getInt("idPersona"));
                 pe.setLocalidad(rs.getString("localidad"));
                 pe.setNombre(rs.getString("nombre"));
-                pe.setPatologias(this.BuscarPatologia(rs.getInt("idPatologia")));
+                pe.setPatologias(this.BuscarPatologiaPorDni(rs.getInt("dni")));
                 pe.setPeso(rs.getFloat("peso"));
                 pe.setTelefono(rs.getInt("telefono"));
                 pe.setTrabajo(rs.getString("trabajo"));
@@ -165,7 +165,7 @@ public class PersonaData {
                 pe.setIdPersona(rs.getInt("idPersona"));
                 pe.setLocalidad(rs.getString("localidad"));
                 pe.setNombre(rs.getString("nombre"));
-                pe.setPatologias(this.BuscarPatologia(rs.getInt("idPatologia")));
+                pe.setPatologias(this.BuscarPatologiaPorDni(rs.getInt("dni")));
                 pe.setPeso(rs.getFloat("peso"));
                 pe.setTelefono(rs.getInt("telefono"));
                 pe.setTrabajo(rs.getString("trabajo"));
@@ -181,6 +181,23 @@ public class PersonaData {
         try{
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                pato.setEstado(rs.getBoolean("estado"));
+                pato.setNombre(rs.getString("Nombre"));
+                pato.setIdPatologia(rs.getInt("idPatologia"));
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error de conexion al buscar laboratoratorios desde el registro de vacuna");
+        }
+    return pato;
+    }
+    public Patologia BuscarPatologiaPorDni(int dni){
+        Patologia pato=new Patologia();
+        String sql = "SELECT * FROM patologia AS pa, persona AS per WHERE pa.idPatologia=per.idPatologia AND per.dni=?";
+        try{
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, dni);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 pato.setEstado(rs.getBoolean("estado"));

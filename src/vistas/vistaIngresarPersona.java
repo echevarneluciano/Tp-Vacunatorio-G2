@@ -329,7 +329,7 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jActivo))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -481,6 +481,7 @@ if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||
     jTextEmail.setText(pe.getEmail());
     jTextPeso.setText(String.valueOf(pe.getPeso()));
     jTextAltura.setText(String.valueOf(pe.getAltura()));
+    System.out.println(pd.BuscarPatologia(dni));
     jComboPatologia.setSelectedItem(pe.getPatologias());
     jComboOcupacion.setSelectedItem(pe.getTrabajo());
     jBModificar.setEnabled(true);
@@ -516,7 +517,7 @@ if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||
 if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||loca==null||email==null||fecha==null||ocupa==null||pat==null)
 {JOptionPane.showMessageDialog(this,"Complete todos los campos");}else{
     LocalDate fe=fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    Persona pe=new Persona(nombre,ape,email,dni,telefono,ocupa,pat,dom,loca,fe,true,peso,altura);
+    Persona pe=new Persona(nombre,ape,email,dni,telefono,ocupa,pat,dom,loca,fe,jActivo.isSelected(),peso,altura);
     pd.modificarPersona(pe);
     JOptionPane.showMessageDialog(this,"Modificado con exito");
     this.jLimpiarActionPerformed(evt);}
