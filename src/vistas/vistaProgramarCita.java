@@ -221,6 +221,10 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     int hora=jHora.getValue()-3;
     int minuto=jMinuto.getValue();
     Date fecha=jDate.getDate();
+    Date factual=new Date();
+    System.out.println(factual);
+    if(fecha==null){JOptionPane.showMessageDialog(this,"Seleccionar fecha posterior a la actual");this.jLimpiarActionPerformed(evt);}else{
+    if(fecha.before(factual)){JOptionPane.showMessageDialog(this,"Seleccionar fecha posterior a la actual");this.jLimpiarActionPerformed(evt);}}
     boolean encuentra=false;
     String motivo=(String)jComboMotivo.getSelectedItem();
     Persona pe=(Persona)jComboPersona.getSelectedItem();
