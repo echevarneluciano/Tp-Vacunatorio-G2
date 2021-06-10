@@ -63,6 +63,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
         jMenuLaboratorio = new javax.swing.JMenuItem();
         jMenuSistema = new javax.swing.JMenu();
         jMenuProgramarCita = new javax.swing.JMenuItem();
+        jFiltrarListarCita = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +123,14 @@ public class vistaEscritorio extends javax.swing.JFrame {
             }
         });
         jMenuSistema.add(jMenuProgramarCita);
+
+        jFiltrarListarCita.setText("Listar/filtrar cita");
+        jFiltrarListarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFiltrarListarCitaActionPerformed(evt);
+            }
+        });
+        jMenuSistema.add(jFiltrarListarCita);
 
         jMenuBar1.add(jMenuSistema);
 
@@ -188,6 +197,15 @@ public class vistaEscritorio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuLaboratorioActionPerformed
 
+    private void jFiltrarListarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFiltrarListarCitaActionPerformed
+        jEscritorio.removeAll();
+        jEscritorio.repaint();
+        vistaListarCitas view = new vistaListarCitas(cd);
+        jEscritorio.add(view);
+        view.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFiltrarListarCitaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -228,6 +246,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jEscritorio;
+    private javax.swing.JMenuItem jFiltrarListarCita;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuIngresos;
     private javax.swing.JMenuItem jMenuItemIngresarPersona;
