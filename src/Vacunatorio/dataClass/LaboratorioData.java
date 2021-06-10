@@ -102,6 +102,25 @@ public class LaboratorioData {
         }
         return lab;
     }
+    public Laboratorio buscarLaboratorio(String nombre){
+        Laboratorio lab = new Laboratorio();
+        String sql="SELECT * FROM `laboratorio` WHERE `nombre`=?";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, nombre);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                lab.setNombre(rs.getString("nombre"));
+                lab.setPaisOrigen(rs.getString("paisOrigen"));
+                lab.setDireccion(rs.getString("direccion"));
+                lab.setEstado(rs.getBoolean("estado"));
+                lab.setIdLaboratorio(rs.getInt("idLaboratorio"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al buscar el laboratorio ingresado");
+        }
+        return lab;
+    }
     public List<Laboratorio> obtenerLaboratorios(){
         ArrayList<Laboratorio> labs=new ArrayList<>();        
         String sql="SELECT * FROM `laboratorio`";
