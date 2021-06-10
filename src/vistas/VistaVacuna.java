@@ -50,6 +50,7 @@ public class VistaVacuna extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
+        setTitle("Altas y Consultas de Vacunas");
 
         tableVac.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -58,11 +59,23 @@ public class VistaVacuna extends javax.swing.JInternalFrame {
             new String [] {
                 "Nro de Serie", "Laboratorio", "Estado"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tableVac);
-        if (tableVac.getColumnModel().getColumnCount() > 0) {
-            tableVac.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

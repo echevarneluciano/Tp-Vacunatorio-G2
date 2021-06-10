@@ -60,6 +60,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
         jMenuItemIngresarPersona = new javax.swing.JMenuItem();
         jMenuPatologia = new javax.swing.JMenuItem();
         jMenuVacuna = new javax.swing.JMenuItem();
+        jMenuLaboratorio = new javax.swing.JMenuItem();
         jMenuSistema = new javax.swing.JMenu();
         jMenuProgramarCita = new javax.swing.JMenuItem();
 
@@ -101,6 +102,14 @@ public class vistaEscritorio extends javax.swing.JFrame {
             }
         });
         jMenuIngresos.add(jMenuVacuna);
+
+        jMenuLaboratorio.setText("A.B.M. Laboratorio");
+        jMenuLaboratorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuLaboratorioActionPerformed(evt);
+            }
+        });
+        jMenuIngresos.add(jMenuLaboratorio);
 
         jMenuBar1.add(jMenuIngresos);
 
@@ -170,6 +179,15 @@ public class vistaEscritorio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuVacunaActionPerformed
 
+    private void jMenuLaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLaboratorioActionPerformed
+        jEscritorio.removeAll();
+        jEscritorio.repaint();
+        vistaLaboratorio view = new vistaLaboratorio(ld);
+        jEscritorio.add(view);
+        view.setVisible(true);  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuLaboratorioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -213,6 +231,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuIngresos;
     private javax.swing.JMenuItem jMenuItemIngresarPersona;
+    private javax.swing.JMenuItem jMenuLaboratorio;
     private javax.swing.JMenuItem jMenuPatologia;
     private javax.swing.JMenuItem jMenuProgramarCita;
     private javax.swing.JMenu jMenuSistema;
