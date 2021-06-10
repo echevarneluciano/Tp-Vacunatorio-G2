@@ -49,13 +49,12 @@ public class VacunaData {
         }
     }
     public void actualizarVacuna(Vacuna vac){
-        String sql="UPDATE `vacuna` SET `idLaboratorio`=? ,`nroSerie`=? ,`estado`=? WHERE `nroSerie`=?";       
+        String sql="UPDATE `vacuna` SET `nroSerie`=? ,`estado`=? WHERE `idVacuna`=?";       
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,vac.getLaboratorio().getIdLaboratorio());
-            ps.setInt(2, vac.getNroSerie());
-            ps.setBoolean(3, vac.isEstado());
-            ps.setInt(4, vac.getNroSerie());
+            ps.setInt(1, vac.getNroSerie());
+            ps.setBoolean(2, vac.isEstado());
+            ps.setInt(3, vac.getIdVacuna());
             ResultSet rs = ps.getGeneratedKeys();
             ps.executeUpdate();
             if(rs.next()){

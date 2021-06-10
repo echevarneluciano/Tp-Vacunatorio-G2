@@ -79,7 +79,6 @@ public class Laboratorio {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + this.idLaboratorio;
         hash = 97 * hash + Objects.hashCode(this.nombre);
         return hash;
     }
@@ -95,9 +94,6 @@ public class Laboratorio {
             return false;
         }
         final Laboratorio other = (Laboratorio) obj;
-        if (this.idLaboratorio != other.idLaboratorio) {
-            return false;
-        }
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
