@@ -221,6 +221,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     int hora=jHora.getValue()-3;
     int minuto=jMinuto.getValue();
     Date fecha=jDate.getDate();
+    boolean encuentra=false;
     String motivo=(String)jComboMotivo.getSelectedItem();
     Persona pe=(Persona)jComboPersona.getSelectedItem();
     Vacunatorio va=(Vacunatorio)jComboVacunatorio.getSelectedItem();
@@ -228,9 +229,14 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     fecha.setHours(hora);fecha.setMinutes(minuto);System.out.println(fecha);
     Timestamp timestamp = new Timestamp(fecha.getTime());
     Cita ci=new Cita (pe,va,motivo,timestamp, true,null);
-    System.out.println(timestamp);
-    cd.ingresarCitaConLDT(ci);
-    this.jLimpiarActionPerformed(evt);
+    Iterator <Cita> it2=cd.obtenerCitas().iterator();
+        while(it2.hasNext()){
+            Cita c=it2.next();
+            if(c.getPersona().getDni()==pe.getDni()&&c.getMotivo().matches(motivo)&&c.isEstado()){encuentra=true;}
+        }
+//    System.out.println(timestamp);
+if(encuentra){JOptionPane.showMessageDialog(this,"La persona ya tiene una cita activa en este u otro vacunatorio.");this.jLimpiarActionPerformed(evt);}
+else {cd.ingresarCitaConLDT(ci);this.jLimpiarActionPerformed(evt);}
     }else {JOptionPane.showMessageDialog(this,"Complete todos los campos");this.jLimpiarActionPerformed(evt);}
     
 //         TODO add your handling code here:
