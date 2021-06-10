@@ -5,10 +5,9 @@
  */
 package Vacunatorio.clases;
 
+import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
+import java.util.Objects;
 
 /**
  *
@@ -20,6 +19,7 @@ public class Cita {
     private Vacunatorio vacunatorio; 
     private Vacuna vacuna;
     private Instant fechayHora;
+    private Timestamp date;
     private String motivo;
     private boolean estado;
 
@@ -41,7 +41,24 @@ public class Cita {
         this.estado = estado;
         this.vacuna=vacuna;
     }
+    public Cita(Persona persona, Vacunatorio vacunatorio,String motivo,Timestamp date, boolean estado,Vacuna vacuna) {
+        this.id = -1;
+        this.persona = persona;
+        this.vacunatorio = vacunatorio;
+        this.date = date;
+        this.motivo = motivo;
+        this.estado = estado;
+        this.vacuna=vacuna;
+    }
     public Cita() {
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 
     public Vacuna getVacuna() {
@@ -89,9 +106,38 @@ public class Cita {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
-    
 
-    
-    
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.persona);
+        hash = 67 * hash + Objects.hashCode(this.vacunatorio);
+        hash = 67 * hash + Objects.hashCode(this.motivo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cita other = (Cita) obj;
+        if (!Objects.equals(this.motivo, other.motivo)) {
+            return false;
+        }
+        if (!Objects.equals(this.persona, other.persona)) {
+            return false;
+        }
+        if (!Objects.equals(this.vacunatorio, other.vacunatorio)) {
+            return false;
+        }
+        return true;
+    }
+      
 }

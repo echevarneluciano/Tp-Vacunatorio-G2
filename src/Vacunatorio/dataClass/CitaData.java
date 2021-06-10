@@ -18,6 +18,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import Vacunatorio.clases.*;
 import Vacunatorio.dataClass.*;
+import java.sql.Types;
 /**
  *
  * @author Wi7o
@@ -58,6 +59,29 @@ public class CitaData {
             ps.setString(4, ct.getMotivo());
             ps.setBoolean(5, ct.isEstado());
             ps.setInt(6, ct.getVacuna().getIdVacuna());
+            ps.executeUpdate();
+            ResultSet rs=ps.getGeneratedKeys();
+            if(rs.next()){
+            ct.setId(rs.getInt(1));
+            JOptionPane.showMessageDialog(null,"Ingresado con exito");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion en metodo ingresarCita." + ex);
+        }
+    }
+    
+    public void ingresarCitaConLDT (Cita ct){
+        String sql="INSERT INTO `citas`(`idPersona`, `idVacunatorio`, `fechYhorTurno`, `motivo`, `estado`, `idVacuna`) VALUES (?,?,?,?,?,?)";       
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, ct.getPersona().getIdPersona());
+            ps.setInt(2, ct.getVacunatorio().getIdVacunatorio());
+            ps.setTimestamp(3, ct.getDate());
+            ps.setString(4, ct.getMotivo());
+            ps.setBoolean(5, ct.isEstado());
+//            ps.setInt(6, ct.getVacuna().getIdVacuna());
+            ps.setNull(6, Types.INTEGER);
             ps.executeUpdate();
             ResultSet rs=ps.getGeneratedKeys();
             if(rs.next()){

@@ -155,7 +155,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private void jMenuProgramarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProgramarCitaActionPerformed
         jEscritorio.removeAll();
         jEscritorio.repaint();
-        vistaProgramarCita view = new vistaProgramarCita (pd,vtod);
+        vistaProgramarCita view = new vistaProgramarCita (pd,vtod,cd);
         jEscritorio.add(view);
         view.setVisible(true);    
         // TODO add your handling code here:
