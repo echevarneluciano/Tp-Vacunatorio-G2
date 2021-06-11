@@ -50,6 +50,15 @@ public class Cita {
         this.estado = estado;
         this.vacuna=vacuna;
     }
+    public Cita(int id,Persona persona, Vacunatorio vacunatorio,String motivo,Timestamp date, boolean estado,Vacuna vacuna) {
+        this.id = id;
+        this.persona = persona;
+        this.vacunatorio = vacunatorio;
+        this.date = date;
+        this.motivo = motivo;
+        this.estado = estado;
+        this.vacuna=vacuna;
+    }
     public Cita() {
     }
 

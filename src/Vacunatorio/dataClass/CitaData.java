@@ -93,6 +93,28 @@ public class CitaData {
             JOptionPane.showMessageDialog(null,"Error de conexion en metodo ingresarCita." + ex);
         }
     }
+    public void actualizarCitaConLTD(Cita ct){
+        String sql="UPDATE citas SET idPersona=?,idVacunatorio=?,fechYhorTurno=?,motivo=?,estado=?,idVacuna=? where idCita=?";       
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, ct.getPersona().getIdPersona());
+            ps.setInt(2, ct.getVacunatorio().getIdVacunatorio());
+            ps.setTimestamp(3, ct.getDate());
+            ps.setString(4, ct.getMotivo());
+            ps.setBoolean(5, ct.isEstado());
+            ps.setNull(6, Types.INTEGER);
+            ps.setInt(7, ct.getId());
+            ps.executeUpdate();
+            ResultSet rs=ps.getGeneratedKeys();
+            if(rs.next()){
+                ct.setId(rs.getInt(1));
+                JOptionPane.showMessageDialog(null,"Reprogramada con exito");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al intentar actualizar los datos");
+        }
+    }
     
     public void actualizarCita(Cita ct){
         String sql="UPDATE citas SET idPersona=?,idVacunatorio=?,fechYhorTurno=?,motivo=?,estado=?,idVacuna=? where idCita=?";       

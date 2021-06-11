@@ -109,7 +109,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Motivo:");
 
-        jComboMotivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dosis", "Repro" }));
+        jComboMotivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nueva dosis", "Reprogramar" }));
         jComboMotivo.setSelectedIndex(-1);
         jComboMotivo.setToolTipText("");
 
@@ -227,23 +227,25 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     if(fecha==null){JOptionPane.showMessageDialog(this,"Seleccionar fecha posterior a la actual");this.jLimpiarActionPerformed(evt);}else{
     if(fecha.before(factual)){JOptionPane.showMessageDialog(this,"Seleccionar fecha posterior a la actual");this.jLimpiarActionPerformed(evt);}}
     boolean encuentra=false;
+    boolean repro=false;
+    int reproId=0;
     String motivo=(String)jComboMotivo.getSelectedItem();
     Persona pe=(Persona)jComboPersona.getSelectedItem();
     Vacunatorio va=(Vacunatorio)jComboVacunatorio.getSelectedItem();
     if(pe!=null&&motivo!=null&&va!=null&&fecha!=null){
     fecha.setHours(hora);fecha.setMinutes(minuto);System.out.println(fecha);
     Timestamp timestamp = new Timestamp(fecha.getTime());
-    Cita ci=new Cita (pe,va,motivo,timestamp, true,null);
     Iterator <Cita> it2=cd.obtenerCitas().iterator();
         while(it2.hasNext()){
             Cita c=it2.next();
             if(c.getPersona().getDni()==pe.getDni()&&c.isEstado()&&c.getVacuna().getNroSerie()==0){encuentra=true;}
+            if(encuentra&&motivo=="Reprogramar"){repro=true;reproId=c.getId();}
         }
-//    System.out.println(timestamp);
-if(encuentra){JOptionPane.showMessageDialog(this,"La persona ya tiene una cita activa en este u otro vacunatorio.");this.jLimpiarActionPerformed(evt);}
-else {cd.ingresarCitaConLDT(ci);this.jLimpiarActionPerformed(evt);}
+if(!encuentra){Cita ci=new Cita (pe,va,"Nueva dosis",timestamp, true,null);cd.ingresarCitaConLDT(ci);this.jLimpiarActionPerformed(evt);}
+if(repro){Cita ci=new Cita (reproId,pe,va,"Nueva dosis",timestamp, true,null);cd.actualizarCitaConLTD(ci);this.jLimpiarActionPerformed(evt);JOptionPane.showMessageDialog(null,"Reprogramada con exito");}
+else {JOptionPane.showMessageDialog(this,"La persona ya tiene una cita activa en este u otro vacunatorio.");this.jLimpiarActionPerformed(evt);}
     }else {JOptionPane.showMessageDialog(this,"Complete todos los campos");this.jLimpiarActionPerformed(evt);}
-    
+ 
 //         TODO add your handling code here:
     }//GEN-LAST:event_jGuardarActionPerformed
 
