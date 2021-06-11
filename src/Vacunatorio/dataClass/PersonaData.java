@@ -210,4 +210,34 @@ public class PersonaData {
         }
     return pato;
     }
+    public List<Persona> obtenerPersonasInscriptasSinCitas(){
+        Persona pe;
+        ArrayList<Persona> personas=new ArrayList<>();        
+        String sql="SELECT * FROM persona WHERE idPersona not in (select citas.idPersona from citas WHERE idVacuna is null and citas.estado!=0)";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                pe = new Persona();
+                pe.setAltura(rs.getFloat("altura"));
+                pe.setApellido(rs.getString("apellido"));
+                pe.setDireccion(rs.getString("direccion"));
+                pe.setDni(rs.getInt("dni"));
+                pe.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                pe.setEmail(rs.getString("email"));
+                pe.setEstado(rs.getBoolean("estado"));
+                pe.setIdPersona(rs.getInt("idPersona"));
+                pe.setLocalidad(rs.getString("localidad"));
+                pe.setNombre(rs.getString("nombre"));
+                pe.setPatologias(this.BuscarPatologiaPorDni(rs.getInt("dni")));
+                pe.setPeso(rs.getFloat("peso"));
+                pe.setTelefono(rs.getInt("telefono"));
+                pe.setTrabajo(rs.getString("trabajo"));
+                personas.add(pe);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion.");
+        }
+        return personas;
+    }
 }
