@@ -211,4 +211,28 @@ public class CitaData {
         
         return cts;
     }
+    public List<Cita> obtenerCitasPersonasConDosDosisAplicadas(){
+        ArrayList<Cita> cts=new ArrayList<>();  
+        Conection();
+        String sql="select * from citas group by citas.idPersona having count(citas.idVacuna)>1";
+        
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                Cita ct = new Cita();
+                ct.setPersona(perData.buscarPersonaId(rs.getInt("idPersona")));
+                ct.setVacunatorio(vacuData.buscarVacunatorio(rs.getInt("idVacunatorio")));
+                ct.setVacuna(vacData.buscarVacunaID(rs.getInt("idVacuna")));
+                ct.setMotivo(rs.getString("motivo"));
+                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toInstant());
+                ct.setEstado(rs.getBoolean("estado"));
+                ct.setId(rs.getInt("idCita"));
+                cts.add(ct);System.out.println(ct.getVacuna().getIdVacuna());
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de citas");
+        }
+        return cts;
+    }
 }

@@ -7,6 +7,7 @@ package vistas;
 
 import Vacunatorio.clases.*;
 import Vacunatorio.dataClass.CitaData;
+import Vacunatorio.dataClass.PersonaData;
 import Vacunatorio.dataClass.VacunaData;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,16 +23,18 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
     
     private CitaData cd;
     private VacunaData vd;
+    private PersonaData pd;
     private DefaultTableModel dtm;
     private List <Cita> listaCitas;
     
     /**
      * Creates new form vistaListarCitas
      */
-    public vistaListarCitas(CitaData cd,VacunaData vd) {
+    public vistaListarCitas(CitaData cd,VacunaData vd,PersonaData pd) {
         initComponents();
         this.cd=cd;
         this.vd=vd;
+        this.pd=pd;
         this.llenarCombos();
     }
 
@@ -306,8 +309,18 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this,"Vacuna aplicada");
         this.jLimpiarActionPerformed(evt);
         this.jTodoActionPerformed(evt);
+        this.borraPersonaConDosDosis();
+     }
     }
-    
+    public void borraPersonaConDosDosis(){
+        Iterator <Cita> it2=cd.obtenerCitasPersonasConDosDosisAplicadas().iterator();
+        while(it2.hasNext()){
+            Cita c=it2.next();
+            c.setEstado(false);
+            Persona p=c.getPersona();p.setEstado(false);
+            Vacuna v=c.getVacuna();v.setEstado(false);
+            cd.actualizarCita(c);pd.modificarPersona(p);vd.actualizarVacuna(v);
+        }  
         // TODO add your handling code here:
     }//GEN-LAST:event_jAplicarActionPerformed
 

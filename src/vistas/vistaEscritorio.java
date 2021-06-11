@@ -200,7 +200,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private void jFiltrarListarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFiltrarListarCitaActionPerformed
         jEscritorio.removeAll();
         jEscritorio.repaint();
-        vistaListarCitas view = new vistaListarCitas(cd,vd);
+        vistaListarCitas view = new vistaListarCitas(cd,vd,pd);
         jEscritorio.add(view);
         view.setVisible(true);
         // TODO add your handling code here:

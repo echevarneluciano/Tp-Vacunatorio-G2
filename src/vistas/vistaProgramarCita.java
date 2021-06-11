@@ -49,6 +49,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
             Vacunatorio pa=it2.next();
             if(pa.isEstado()){jComboVacunatorio.addItem(pa);}
         }
+        jHora.setValue(7);;
     }
 
     /**
@@ -211,7 +212,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     jComboPersona.setSelectedIndex(-1);
     jComboVacunatorio.setSelectedIndex(-1);
     jDate.setDate(null);
-    jHora.setValue(0);
+    jHora.setValue(7);
     jMinuto.setValue(0);
     jComboMotivo.setSelectedIndex(-1);
         // TODO add your handling code here:
@@ -222,7 +223,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     int minuto=jMinuto.getValue();
     Date fecha=jDate.getDate();
     Date factual=new Date();
-    System.out.println(factual);
+    System.out.println(fecha);
     if(fecha==null){JOptionPane.showMessageDialog(this,"Seleccionar fecha posterior a la actual");this.jLimpiarActionPerformed(evt);}else{
     if(fecha.before(factual)){JOptionPane.showMessageDialog(this,"Seleccionar fecha posterior a la actual");this.jLimpiarActionPerformed(evt);}}
     boolean encuentra=false;
@@ -236,7 +237,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     Iterator <Cita> it2=cd.obtenerCitas().iterator();
         while(it2.hasNext()){
             Cita c=it2.next();
-            if(c.getPersona().getDni()==pe.getDni()&&c.getMotivo().matches(motivo)&&c.isEstado()){encuentra=true;}
+            if(c.getPersona().getDni()==pe.getDni()&&c.getMotivo().matches(motivo)&&c.isEstado()&&c.getVacuna().getNroSerie()==0){encuentra=true;}
         }
 //    System.out.println(timestamp);
 if(encuentra){JOptionPane.showMessageDialog(this,"La persona ya tiene una cita activa en este u otro vacunatorio.");this.jLimpiarActionPerformed(evt);}
