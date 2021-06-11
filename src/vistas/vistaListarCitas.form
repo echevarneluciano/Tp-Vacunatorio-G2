@@ -73,7 +73,7 @@
                               <Component id="jFaltaDos" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="181" max="32767" attributes="0"/>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLimpiar" min="-2" max="-2" attributes="0"/>
@@ -196,7 +196,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jFaltaUna">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Falta 1 "/>
+        <Property name="text" type="java.lang.String" value="Pendiente aplicar una d."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFaltaUnaActionPerformed"/>
@@ -204,7 +204,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jFaltaDos">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Falta 2"/>
+        <Property name="text" type="java.lang.String" value="Pendiente aplicar dos d."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFaltaDosActionPerformed"/>

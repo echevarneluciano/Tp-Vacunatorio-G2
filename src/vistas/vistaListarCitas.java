@@ -133,14 +133,14 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
             }
         });
 
-        jFaltaUna.setText("Falta 1 ");
+        jFaltaUna.setText("Pendiente aplicar una d.");
         jFaltaUna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFaltaUnaActionPerformed(evt);
             }
         });
 
-        jFaltaDos.setText("Falta 2");
+        jFaltaDos.setText("Pendiente aplicar dos d.");
         jFaltaDos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFaltaDosActionPerformed(evt);
@@ -201,7 +201,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
                                 .addComponent(jFaltaUna)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jFaltaDos)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLimpiar)
@@ -292,7 +292,22 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTodoActionPerformed
 
     private void jFaltaDosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFaltaDosActionPerformed
-    
+    this.jActualizarActionPerformed(evt);
+    dtm = (DefaultTableModel) jTable.getModel();
+    dtm.setRowCount(0); 
+        for (Cita c : cd.filtroDosDosisFaltantes()){ 
+            if(c.isEstado()){
+                    String []row = new String[7];
+                    row[0] = Integer.toString(c.getId());
+                    row[1] = Integer.toString(c.getPersona().getDni());
+                    row[2]= c.getVacunatorio().getNombre();
+                    if(c.getVacuna().getIdVacuna()==0){row[3] ="Por aplicar";}else row[3] = "Aplicada";
+                    row[4]=c.getMotivo();
+                    row[5]=c.getFechayHora().toString();
+                    row[6]=Integer.toString(c.getVacuna().getNroSerie());System.out.println();
+                    dtm.addRow(row);
+                    jTable.setModel(dtm); 
+        }}
         // TODO add your handling code here:
     }//GEN-LAST:event_jFaltaDosActionPerformed
 
