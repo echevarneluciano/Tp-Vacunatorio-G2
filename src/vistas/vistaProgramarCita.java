@@ -406,7 +406,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
         }
 if(!encuentra){Cita ci=new Cita (pe,va,"Nueva dosis",timestamp, true,null);cd.ingresarCitaConLDT(ci);this.jLimpiarActionPerformed(evt);JOptionPane.showMessageDialog(this,"(Guardada como nueva dosis)");}
 if(repro){Cita ci=new Cita (reproId,pe,va,"Reprogramada",timestamp, true,null);cd.actualizarCitaConLTD(ci);this.jLimpiarActionPerformed(evt);JOptionPane.showMessageDialog(null,"Reprogramada con exito");}
-else {JOptionPane.showMessageDialog(this,"La persona ya tiene una cita activa en este u otro vacunatorio.");this.jLimpiarActionPerformed(evt);}
+if(encuentra&&!repro) {JOptionPane.showMessageDialog(this,"La persona ya tiene una cita activa en este u otro vacunatorio.");this.jLimpiarActionPerformed(evt);}
     }else {JOptionPane.showMessageDialog(this,"Complete todos los campos");this.jLimpiarActionPerformed(evt);}
  
 //         TODO add your handling code here:
