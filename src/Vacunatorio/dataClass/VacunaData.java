@@ -121,7 +121,27 @@ public class VacunaData {
         }
     return vac;
     }
-    
+    public Vacuna buscarVacunaID(int ns){
+        Vacuna vac = new Vacuna();
+        String sql="SELECT * FROM vacuna WHERE idVacuna=?";
+        try {
+            
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, ns);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                Laboratorio lab = this.BuscarLaboratorio(rs.getInt("idLaboratorio"));
+                vac.setLaboratorio(lab);
+                vac.setNroSerie(rs.getInt("nroSerie"));
+                vac.setEstado(rs.getBoolean("estado"));
+                vac.setIdVacuna(rs.getInt("idVacuna"));
+              
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al buscar el laboratorio ingresado");
+        }
+    return vac;
+    }
     public List<Vacuna> obtenerVacunas(){
         ArrayList<Vacuna> vacunas=new ArrayList<>();
         String sql="SELECT * FROM `vacuna`";

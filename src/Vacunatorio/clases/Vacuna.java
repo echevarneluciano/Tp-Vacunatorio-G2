@@ -54,5 +54,10 @@ public class Vacuna {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return laboratorio + ", nroSerie=" + nroSerie;
+    }
     
 }

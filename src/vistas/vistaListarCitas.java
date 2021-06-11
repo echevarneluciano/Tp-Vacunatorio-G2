@@ -5,10 +5,13 @@
  */
 package vistas;
 
-import Vacunatorio.clases.Cita;
+import Vacunatorio.clases.*;
 import Vacunatorio.dataClass.CitaData;
+import Vacunatorio.dataClass.VacunaData;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,15 +21,18 @@ import javax.swing.table.DefaultTableModel;
 public class vistaListarCitas extends javax.swing.JInternalFrame {
     
     private CitaData cd;
+    private VacunaData vd;
     private DefaultTableModel dtm;
     private List <Cita> listaCitas;
     
     /**
      * Creates new form vistaListarCitas
      */
-    public vistaListarCitas(CitaData cd) {
+    public vistaListarCitas(CitaData cd,VacunaData vd) {
         initComponents();
         this.cd=cd;
+        this.vd=vd;
+        this.llenarCombos();
     }
 
     /**
@@ -49,6 +55,14 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
         jFaltaUna = new javax.swing.JButton();
         jFaltaDos = new javax.swing.JButton();
         jLimpiar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jComboVacunas = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jComboCita = new javax.swing.JComboBox<>();
+        jAplicar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jActualizar = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -100,7 +114,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
         jTable.setEnabled(false);
         jScrollPane2.setViewportView(jTable);
 
-        jLabel2.setText("Filtros:");
+        jLabel2.setText("Filtrar:");
 
         jTodo.setText("Todo");
         jTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -114,8 +128,40 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
         jFaltaUna.setText("Falta 1 ");
 
         jFaltaDos.setText("Falta 2");
+        jFaltaDos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFaltaDosActionPerformed(evt);
+            }
+        });
 
         jLimpiar.setText("Limpiar");
+        jLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLimpiarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Modificar:");
+
+        jLabel4.setText("Vacunas disponibles:");
+
+        jLabel5.setText("Citas disponibles:");
+
+        jAplicar.setText("Aplicar");
+        jAplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAplicarActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Aplicar vacuna!!");
+
+        jActualizar.setText("Limpiar filas");
+        jActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,22 +170,42 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(369, 369, 369))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTodo)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jFinal)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jFaltaUna)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jFaltaDos))
-                            .addComponent(jLimpiar))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jActualizar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLimpiar)
+                                .addGap(193, 193, 193)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jAplicar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jComboCita, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jComboVacunas, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,21 +215,50 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTodo)
                     .addComponent(jFinal)
                     .addComponent(jFaltaUna)
-                    .addComponent(jFaltaDos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(jLimpiar)
-                .addContainerGap())
+                    .addComponent(jFaltaDos)
+                    .addComponent(jLabel5)
+                    .addComponent(jComboCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboVacunas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jAplicar)
+                    .addComponent(jLimpiar)
+                    .addComponent(jLabel6)
+                    .addComponent(jActualizar))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void llenarCombos(){
+        jComboCita.removeAllItems();
+        jComboVacunas.removeAllItems();
+        Iterator <Cita> it=cd.obtenerCitas().iterator();
+        jComboCita.addItem(null);
+        while(it.hasNext()){
+            Cita ci=it.next();
+            if(ci.getVacuna().getIdVacuna()==0){jComboCita.addItem(ci);}
+        }
+        Iterator <Vacuna> it2=vd.obtenerVacunas().iterator();
+        jComboVacunas.addItem(null);
+        while(it2.hasNext()){
+            Vacuna vi=it2.next();
+            if(vi.isEstado()){jComboVacunas.addItem(vi);}
+        }
+    }
+    
     private void jTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTodoActionPerformed
 
         dtm = (DefaultTableModel) jTable.getModel();
@@ -176,20 +271,61 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
                     if(c.isEstado()){row[3] ="Por aplicar";}else row[3] = "Aplicada";
                     row[4]=c.getMotivo();
                     row[5]=c.getFechayHora().toString();
-                    row[6]=Integer.toString(c.getVacuna().getNroSerie());
+                    row[6]=Integer.toString(c.getVacuna().getNroSerie());System.out.println();
                     dtm.addRow(row);
                     jTable.setModel(dtm); 
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jTodoActionPerformed
 
+    private void jFaltaDosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFaltaDosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFaltaDosActionPerformed
+
+    private void jActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jActualizarActionPerformed
+            DefaultTableModel modelo=(DefaultTableModel) jTable.getModel();
+            int filas=jTable.getRowCount();
+            for (int i = 0;filas>i; i++) {
+                modelo.removeRow(0);}
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jActualizarActionPerformed
+
+    private void jLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLimpiarActionPerformed
+    this.llenarCombos();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLimpiarActionPerformed
+
+    private void jAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAplicarActionPerformed
+    Cita ci=(Cita)jComboCita.getSelectedItem();
+    Vacuna vi=(Vacuna)jComboVacunas.getSelectedItem();
+    if(ci!=null&&vi!=null){
+        ci.setVacuna(vi);
+        cd.actualizarCita(ci);
+        vi.setEstado(false);
+        vd.actualizarVacuna(vi);
+        JOptionPane.showMessageDialog(this,"Vacuna aplicada");
+        this.jLimpiarActionPerformed(evt);
+        this.jTodoActionPerformed(evt);
+    }
+    
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jAplicarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jActualizar;
+    private javax.swing.JButton jAplicar;
+    private javax.swing.JComboBox<Cita> jComboCita;
+    private javax.swing.JComboBox<Vacuna> jComboVacunas;
     private javax.swing.JButton jFaltaDos;
     private javax.swing.JButton jFaltaUna;
     private javax.swing.JButton jFinal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jLimpiar;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;

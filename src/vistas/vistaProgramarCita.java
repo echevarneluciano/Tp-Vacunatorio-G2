@@ -108,7 +108,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Motivo:");
 
-        jComboMotivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ra dosis", "2da dosis" }));
+        jComboMotivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dosis", "Repro" }));
         jComboMotivo.setSelectedIndex(-1);
         jComboMotivo.setToolTipText("");
 

@@ -194,8 +194,8 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
-            <StringItem index="0" value="1ra dosis"/>
-            <StringItem index="1" value="2da dosis"/>
+            <StringItem index="0" value="Dosis"/>
+            <StringItem index="1" value="Repro"/>
           </StringArray>
         </Property>
         <Property name="selectedIndex" type="int" value="-1"/>

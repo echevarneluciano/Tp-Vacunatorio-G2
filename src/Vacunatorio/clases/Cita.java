@@ -139,5 +139,10 @@ public class Cita {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Cita nro="+id + ", "+persona;
+    }
       
 }

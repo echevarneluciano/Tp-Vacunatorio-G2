@@ -124,7 +124,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
         });
         jMenuSistema.add(jMenuProgramarCita);
 
-        jFiltrarListarCita.setText("Listar/filtrar cita");
+        jFiltrarListarCita.setText("Listar citas/aplicar dosis");
         jFiltrarListarCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFiltrarListarCitaActionPerformed(evt);
@@ -200,7 +200,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private void jFiltrarListarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFiltrarListarCitaActionPerformed
         jEscritorio.removeAll();
         jEscritorio.repaint();
-        vistaListarCitas view = new vistaListarCitas(cd);
+        vistaListarCitas view = new vistaListarCitas(cd,vd);
         jEscritorio.add(view);
         view.setVisible(true);
         // TODO add your handling code here:
