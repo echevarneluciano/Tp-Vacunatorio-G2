@@ -237,7 +237,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     Iterator <Cita> it2=cd.obtenerCitas().iterator();
         while(it2.hasNext()){
             Cita c=it2.next();
-            if(c.getPersona().getDni()==pe.getDni()&&c.getMotivo().matches(motivo)&&c.isEstado()&&c.getVacuna().getNroSerie()==0){encuentra=true;}
+            if(c.getPersona().getDni()==pe.getDni()&&c.isEstado()&&c.getVacuna().getNroSerie()==0){encuentra=true;}
         }
 //    System.out.println(timestamp);
 if(encuentra){JOptionPane.showMessageDialog(this,"La persona ya tiene una cita activa en este u otro vacunatorio.");this.jLimpiarActionPerformed(evt);}
