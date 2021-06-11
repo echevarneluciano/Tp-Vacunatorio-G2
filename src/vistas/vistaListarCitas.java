@@ -127,8 +127,18 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
         });
 
         jFinal.setText("Finalizadas");
+        jFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFinalActionPerformed(evt);
+            }
+        });
 
         jFaltaUna.setText("Falta 1 ");
+        jFaltaUna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFaltaUnaActionPerformed(evt);
+            }
+        });
 
         jFaltaDos.setText("Falta 2");
         jFaltaDos.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +192,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jActualizar)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTodo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -189,8 +200,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jFaltaUna)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFaltaDos))
-                            .addComponent(jActualizar))
+                                .addComponent(jFaltaDos)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -239,7 +249,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
                     .addComponent(jLimpiar)
                     .addComponent(jLabel6)
                     .addComponent(jActualizar))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -271,7 +281,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
                     row[0] = Integer.toString(c.getId());
                     row[1] = Integer.toString(c.getPersona().getDni());
                     row[2]= c.getVacunatorio().getNombre();
-                    if(c.isEstado()){row[3] ="Por aplicar";}else row[3] = "Aplicada";
+                    if(c.getVacuna().getIdVacuna()==0){row[3] ="Por aplicar";}else row[3] = "Aplicada";
                     row[4]=c.getMotivo();
                     row[5]=c.getFechayHora().toString();
                     row[6]=Integer.toString(c.getVacuna().getNroSerie());System.out.println();
@@ -282,6 +292,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTodoActionPerformed
 
     private void jFaltaDosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFaltaDosActionPerformed
+    
         // TODO add your handling code here:
     }//GEN-LAST:event_jFaltaDosActionPerformed
 
@@ -320,9 +331,54 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
             Persona p=c.getPersona();p.setEstado(false);
             Vacuna v=c.getVacuna();v.setEstado(false);
             cd.actualizarCita(c);pd.modificarPersona(p);vd.actualizarVacuna(v);
-        }  
+        }
+        Iterator <Cita> it=cd.obtenerCitas().iterator();
+        while(it.hasNext()){
+            Cita c=it.next();
+            if(!c.getPersona().isEstado()){c.setEstado(false);cd.actualizarCita(c);}  
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jAplicarActionPerformed
+
+    private void jFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFinalActionPerformed
+    this.jActualizarActionPerformed(evt);
+    dtm = (DefaultTableModel) jTable.getModel();
+        dtm.setRowCount(0); 
+        for (Cita c : cd.obtenerCitas()){  
+                    if(!c.isEstado()){
+                    String []row = new String[7];
+                    row[0] = Integer.toString(c.getId());
+                    row[1] = Integer.toString(c.getPersona().getDni());
+                    row[2]= c.getVacunatorio().getNombre();
+                    if(c.getVacuna().getIdVacuna()==0){row[3] ="Por aplicar";}else row[3] = "Aplicada";
+                    row[4]=c.getMotivo();
+                    row[5]=c.getFechayHora().toString();
+                    row[6]=Integer.toString(c.getVacuna().getNroSerie());System.out.println();
+                    dtm.addRow(row);
+                    jTable.setModel(dtm); 
+        }}
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFinalActionPerformed
+
+    private void jFaltaUnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFaltaUnaActionPerformed
+    this.jActualizarActionPerformed(evt);
+    dtm = (DefaultTableModel) jTable.getModel();
+    dtm.setRowCount(0); 
+        for (Cita c : cd.obtenerCitasPersonasConUnaDosisAplicadas()){ 
+            if(c.isEstado()){
+                    String []row = new String[7];
+                    row[0] = Integer.toString(c.getId());
+                    row[1] = Integer.toString(c.getPersona().getDni());
+                    row[2]= c.getVacunatorio().getNombre();
+                    if(c.getVacuna().getIdVacuna()==0){row[3] ="Por aplicar";}else row[3] = "Aplicada";
+                    row[4]=c.getMotivo();
+                    row[5]=c.getFechayHora().toString();
+                    row[6]=Integer.toString(c.getVacuna().getNroSerie());System.out.println();
+                    dtm.addRow(row);
+                    jTable.setModel(dtm); 
+        }}
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFaltaUnaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
