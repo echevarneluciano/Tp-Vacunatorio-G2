@@ -55,7 +55,7 @@ public class CitaData {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, ct.getPersona().getIdPersona());
             ps.setInt(2, ct.getVacunatorio().getIdVacunatorio());
-            ps.setTimestamp(3, Timestamp.from(ct.getFechayHora()));
+            ps.setTimestamp(3, Timestamp.valueOf(ct.getFechayHora()));
             ps.setString(4, ct.getMotivo());
             ps.setBoolean(5, ct.isEstado());
             ps.setInt(6, ct.getVacuna().getIdVacuna());
@@ -122,7 +122,7 @@ public class CitaData {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, ct.getPersona().getIdPersona());
             ps.setInt(2, ct.getVacunatorio().getIdVacunatorio());
-            ps.setTimestamp(3, Timestamp.from(ct.getFechayHora()));
+            ps.setTimestamp(3, Timestamp.valueOf(ct.getFechayHora()));
             ps.setString(4, ct.getMotivo());
             ps.setBoolean(5, ct.isEstado());
             ps.setInt(6, ct.getVacuna().getIdVacuna());
@@ -165,7 +165,7 @@ public class CitaData {
                 ct.setVacunatorio(vacuData.buscarVacunatorio(rs.getInt("idVacunatorio")));
                 ct.setVacuna(vacData.buscarVacunaID(rs.getInt("idVacuna")));
                 ct.setMotivo(rs.getString("motivo"));
-                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toInstant());
+                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toLocalDateTime());
                 ct.setEstado(rs.getBoolean("estado"));
                 ct.setId(rs.getInt("idCita"));
             }
@@ -190,7 +190,7 @@ public class CitaData {
                 ct.setVacunatorio(vacuData.buscarVacunatorio(rs.getInt("idVacunatorio")));
                 ct.setVacuna(vacData.buscarVacunaID(rs.getInt("idVacuna")));
                 ct.setMotivo(rs.getString("motivo"));
-                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toInstant());
+                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toLocalDateTime());
                 ct.setEstado(rs.getBoolean("estado"));
                 ct.setId(rs.getInt("idCita"));
                 cts.add(ct);System.out.println(ct.getVacuna().getIdVacuna());
@@ -222,7 +222,7 @@ public class CitaData {
                 ct.setVacunatorio(vacuData.buscarVacunatorio(rs.getInt("idVacunatorio")));
                 ct.setVacuna(vacData.buscarVacunaID(rs.getInt("idVacuna")));
                 ct.setMotivo(rs.getString("motivo"));
-                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toInstant());
+                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toLocalDateTime());
                 ct.setEstado(rs.getBoolean("estado"));
                 ct.setId(rs.getInt("idCita"));
                 cts.add(ct);
@@ -247,7 +247,7 @@ public class CitaData {
                 ct.setVacunatorio(vacuData.buscarVacunatorio(rs.getInt("idVacunatorio")));
                 ct.setVacuna(vacData.buscarVacunaID(rs.getInt("idVacuna")));
                 ct.setMotivo(rs.getString("motivo"));
-                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toInstant());
+                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toLocalDateTime());
                 ct.setEstado(rs.getBoolean("estado"));
                 ct.setId(rs.getInt("idCita"));
                 cts.add(ct);System.out.println(ct.getVacuna().getIdVacuna());
@@ -271,7 +271,7 @@ public class CitaData {
                 ct.setVacunatorio(vacuData.buscarVacunatorio(rs.getInt("idVacunatorio")));
                 ct.setVacuna(vacData.buscarVacunaID(rs.getInt("idVacuna")));
                 ct.setMotivo(rs.getString("motivo"));
-                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toInstant());
+                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toLocalDateTime());
                 ct.setEstado(rs.getBoolean("estado"));
                 ct.setId(rs.getInt("idCita"));
                 cts.add(ct);System.out.println(ct.getVacuna().getIdVacuna());
@@ -295,7 +295,7 @@ public class CitaData {
                 ct.setVacunatorio(vacuData.buscarVacunatorio(rs.getInt("idVacunatorio")));
                 ct.setVacuna(vacData.buscarVacunaID(rs.getInt("idVacuna")));
                 ct.setMotivo(rs.getString("motivo"));
-                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toInstant());
+                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toLocalDateTime());
                 ct.setEstado(rs.getBoolean("estado"));
                 ct.setId(rs.getInt("idCita"));
                 cts.add(ct);System.out.println(ct.getVacuna().getIdVacuna());

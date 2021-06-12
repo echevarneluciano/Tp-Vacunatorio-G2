@@ -6,7 +6,7 @@
 package Vacunatorio.clases;
 
 import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -18,12 +18,12 @@ public class Cita {
     private Persona persona; 
     private Vacunatorio vacunatorio; 
     private Vacuna vacuna;
-    private Instant fechayHora;
+    private LocalDateTime fechayHora;
     private Timestamp date;
     private String motivo;
     private boolean estado;
 
-    public Cita(int id, Persona persona, Vacunatorio vacunatorio, Instant fechayHora, String motivo, boolean estado,Vacuna vacuna) {
+    public Cita(int id, Persona persona, Vacunatorio vacunatorio, LocalDateTime fechayHora, String motivo, boolean estado,Vacuna vacuna) {
         this.id = id;
         this.persona = persona;
         this.vacunatorio = vacunatorio;
@@ -32,7 +32,7 @@ public class Cita {
         this.estado = estado;
         this.vacuna=vacuna;
     }
-    public Cita(Persona persona, Vacunatorio vacunatorio, Instant fechayHora, String motivo, boolean estado,Vacuna vacuna) {
+    public Cita(Persona persona, Vacunatorio vacunatorio, LocalDateTime fechayHora, String motivo, boolean estado,Vacuna vacuna) {
         this.id = -1;
         this.persona = persona;
         this.vacunatorio = vacunatorio;
@@ -87,7 +87,7 @@ public class Cita {
     public Vacunatorio getVacunatorio() {
         return vacunatorio;
     }
-    public Instant getFechayHora() {
+    public LocalDateTime getFechayHora() {
         return fechayHora;
     }
     public String getMotivo() {
@@ -106,7 +106,7 @@ public class Cita {
     public void setVacunatorio(Vacunatorio vacunatorio) {
         this.vacunatorio = vacunatorio;
     }
-    public void setFechayHora(Instant fechayHora) {
+    public void setFechayHora(LocalDateTime fechayHora) {
         this.fechayHora = fechayHora;
     }
     public void setMotivo(String motivo) {
