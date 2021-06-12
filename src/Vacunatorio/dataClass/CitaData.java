@@ -38,7 +38,7 @@ public class CitaData {
         }
     }
     
-        public void Conection (){
+    public void Conection (){
             try {
                 Conexion cont = new Conexion();
                 perData = new PersonaData(cont);
@@ -206,11 +206,12 @@ public class CitaData {
         Conection();
         String sql;
         if (aply == 1)
-        sql="SELECT * FROM `citas` where `idVacuna`=?";
-        else if (aply == 2)
-        sql="SELECT * FROM `citas` where `idVacunatorio`=?";
-        else
-        sql="SELECT * FROM `citas` where `idPersona`=?";    
+            sql="SELECT * FROM `citas` where `idVacuna`=?";
+        else 
+            if (aply == 2)
+                sql="SELECT * FROM `citas` where `idVacunatorio`=?";
+            else
+                sql="SELECT * FROM `citas` where `idPersona`=?";    
         
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -304,5 +305,32 @@ public class CitaData {
             JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de citas");
         }
         return cts;
+    }
+
+    //Actualizacion Guido
+    public List<Cita> obtenerAplicadasxCentro(int idCentro){
+       ArrayList<Cita> listaAplicadas = new ArrayList<>();
+       Conection();
+        String sql="SELECT * FROM `citas` WHERE `idLaboratorio`=?";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idCentro);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                Cita ct = new Cita();
+                ct.setPersona(perData.buscarPersonaId(rs.getInt("idPersona")));
+                ct.setVacunatorio(vacuData.buscarVacunatorio(rs.getInt("idVacunatorio")));
+                ct.setVacuna(vacData.buscarVacunaID(rs.getInt("idVacuna")));
+                ct.setMotivo(rs.getString("motivo"));
+                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toInstant());
+                ct.setEstado(rs.getBoolean("estado"));
+                ct.setId(rs.getInt("idCita"));
+                if(ct.getVacunatorio().getIdVacunatorio()==idCentro)
+                    listaAplicadas.add(ct);
+                }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de vacunas aplicadas");
+        }
+        return listaAplicadas; 
     }
 }

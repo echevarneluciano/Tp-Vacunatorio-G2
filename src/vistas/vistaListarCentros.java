@@ -5,17 +5,31 @@
  */
 package vistas;
 
+import Vacunatorio.clases.*;
+import Vacunatorio.dataClass.*;
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author guido
  */
 public class vistaListarCentros extends javax.swing.JInternalFrame {
-
+    private CitaData ciData;
+    private VacunatorioData vacuData;
+    private DefaultTableModel dtm,dtm2;
     /**
      * Creates new form NewJInternalFrame
      */
-    public vistaListarCentros() {
+    public vistaListarCentros(VacunaData vd, CitaData cd, VacunatorioData vD) {
         initComponents();
+        this.ciData = cd;
+        this.vacuData = vD;
+        cargaTabVacunatorios(vD,cd);
+        cargaCombo(vD);
     }
 
     /**
@@ -45,11 +59,13 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         textNombre = new javax.swing.JTextField();
         textLocal = new javax.swing.JTextField();
-        textDir = new javax.swing.JTextField();
+        textCalle = new javax.swing.JTextField();
         btnBuscarVacunatorio = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
+        textNro = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Eras Medium ITC", 0, 18)); // NOI18N
         jLabel1.setText("Listado Vacunatorios");
@@ -103,14 +119,17 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        comboVacunatorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel6.setFont(new java.awt.Font("Eras Medium ITC", 0, 18)); // NOI18N
         jLabel6.setText("Filtrar aplicadas por centro");
 
         jLabel7.setText("Seleccione un vacunatorio");
 
         btnBuscarCombo.setText("Buscar");
+        btnBuscarCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarComboActionPerformed(evt);
+            }
+        });
 
         tableVacunas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -180,15 +199,45 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Localidad");
 
-        jLabel5.setText("Direccion");
+        jLabel5.setText("Calle");
+
+        textLocal.setEnabled(false);
+
+        textCalle.setEnabled(false);
 
         btnBuscarVacunatorio.setText("Buscar");
+        btnBuscarVacunatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarVacunatorioActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
+        btnGuardar.setEnabled(false);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
+        btnModificar.setEnabled(false);
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        textNro.setEnabled(false);
+
+        jLabel8.setText("Nro");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -209,21 +258,23 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnGuardar))
                             .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(textDir))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel3))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(textNombre)
-                                            .addComponent(textLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(textCalle)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel8)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(textNro, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(textNombre)
+                                    .addComponent(textLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBuscarVacunatorio)))))
+                                .addComponent(btnBuscarVacunatorio)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -242,9 +293,11 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                    .addComponent(textCalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(textNro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpiar)
                     .addComponent(btnGuardar)
@@ -273,7 +326,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5))
         );
@@ -281,14 +334,130 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarVacunatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVacunatorioActionPerformed
+        Vacunatorio vac = this.buscaVacu();
+        String n = textNombre.getText();
+        if(!n.equals("")){
+            if(VacuEsta(vac)){
+                btnModificar.setEnabled(true);
+                textCalle.setText(vac.getCalle());
+                textNro.setText(vac.getAltura()+"");
+                textLocal.setText(vac.getLocalidad());
+                JOptionPane.showMessageDialog(this,"El vacunatorio se encuentra cargado, para editar los campos precione en Modificar");
+            }else{
+                if(JOptionPane.showConfirmDialog(this,"El vacunatorio no coincide con ninguno en el sistema, desea agregarlo?")==1){
+                    textNombre.setEnabled(false);
+                    btnBuscarVacunatorio.setEnabled(false);
+                    textCalle.setEnabled(true);
+                    textNro.setEnabled(true);
+                    textLocal.setEnabled(true);
+                    btnGuardar.setVisible(true);
+                }else
+                    this.btnLimpiarActionPerformed(evt);
+            }
+        }else
+            JOptionPane.showMessageDialog(this,"El campo nombre no puede estar vacío");
+    }//GEN-LAST:event_btnBuscarVacunatorioActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        btnGuardar.setEnabled(false);
+        btnModificar.setEnabled(false);
+        textCalle.setEnabled(false);
+        textNro.setEnabled(false);
+        textLocal.setEnabled(false);
+        btnBuscarVacunatorio.setEnabled(true);
+        textNombre.setEnabled(true);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        textNombre.setEnabled(false);
+        btnBuscarVacunatorio.setEnabled(false);
+        btnModificar.setEnabled(true);
+        textLocal.setEnabled(true);
+        textCalle.setEnabled(true);
+        textNro.setEnabled(true);
+        btnGuardar.setEnabled(true);
+    }//GEN-LAST:event_btnModificarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        Vacunatorio v = this.buscaVacu();
+        if(VacuEsta(v)){
+            vacuData.actualizarVacunatorio(v);
+            JOptionPane.showMessageDialog(this,"Vacunatorio actualizado exitosamente");
+        }else
+            vacuData.ingresarVacunatorio(v);
+        this.cargaTabVacunatorios(this.vacuData, this.ciData);
+        cargaCombo(this.vacuData);
+        this.btnLimpiarActionPerformed(evt);
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
+    
+    
+    private void btnBuscarComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarComboActionPerformed
+        dtm2 = (DefaultTableModel) tableVacunatorios.getModel();
+        dtm2.setRowCount(0);
+        Object vacu;
+        vacu = comboVacunatorio.getSelectedItem();
+        if(vacu instanceof Vacunatorio){        
+            for(Cita c: this.ciData.obtenerAplicadasxCentro(((Vacunatorio) vacu).getIdVacunatorio())){
+                String []row = new String[2];
+                row[0] = c.getVacuna().getNroSerie()+"";
+                row[1] = c.getPersona().getDni()+"";
+                dtm2.addRow(row);
+                tableVacunatorios.setModel(dtm2);
+            }   
+        }else
+            JOptionPane.showMessageDialog(this,"Debe seleccionar un laboratorio para filtrar las vacunas aplicadas en el mismo");
+    }//GEN-LAST:event_btnBuscarComboActionPerformed
+
+    public boolean VacuEsta(Vacunatorio v){
+        Vacunatorio vacAux = new Vacunatorio();
+        return v.equals(vacAux); 
+    }
+    public Vacunatorio buscaVacu(){
+        List<Vacunatorio> listaVacunatorios = vacuData.obtenerVacunatorios();
+        Vacunatorio vac = new Vacunatorio();
+        String n = textNombre.getText();
+        boolean esta = false;
+        for(Vacunatorio v : listaVacunatorios){
+            if(v.getNombre().equals(n)){
+               esta = true;
+                vac = v;
+               break;               
+            }        
+        }
+        return vac;
+    }
+    
+    public void cargaTabVacunatorios(VacunatorioData vD,CitaData cd){
+        dtm = (DefaultTableModel) tableVacunatorios.getModel();
+        dtm.setRowCount(0);
+        for(Vacunatorio v: vD.obtenerVacunatorios()){
+            List <Cita> listCitas = cd.obtenerAplicadasxCentro(v.getIdVacunatorio());
+            String []row = new String[4];
+            row[0] = v.getNombre();
+            row[1] = v.getLocalidad();
+            row[2] = v.getCalle()+v.getAltura();
+            row[3]= listCitas.size()+"";
+            dtm.addRow(row);
+            tableVacunatorios.setModel(dtm);
+        }   
+    }
+    
+    public void cargaCombo(VacunatorioData vD){
+        comboVacunatorio.removeAllItems();
+        comboVacunatorio.addItem(null);
+        Iterator<Vacunatorio> itVac = vD.obtenerVacunatorios().iterator();
+        while(itVac.hasNext()){
+            Vacunatorio vac=itVac.next();
+            comboVacunatorio.addItem(vac);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCombo;
     private javax.swing.JButton btnBuscarVacunatorio;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JComboBox<String> comboVacunatorio;
+    private javax.swing.JComboBox<Vacunatorio> comboVacunatorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -296,6 +465,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -303,8 +473,9 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tableVacunas;
     private javax.swing.JTable tableVacunatorios;
-    private javax.swing.JTextField textDir;
+    private javax.swing.JTextField textCalle;
     private javax.swing.JTextField textLocal;
     private javax.swing.JTextField textNombre;
+    private javax.swing.JTextField textNro;
     // End of variables declaration//GEN-END:variables
 }
