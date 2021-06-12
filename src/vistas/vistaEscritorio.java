@@ -64,6 +64,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
         jMenuProgramarCita = new javax.swing.JMenuItem();
         jFiltrarListarCita = new javax.swing.JMenuItem();
         jMenuVacuna = new javax.swing.JMenuItem();
+        jMenuVacunatorio = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,6 +132,14 @@ public class vistaEscritorio extends javax.swing.JFrame {
             }
         });
         jMenuSistema.add(jMenuVacuna);
+
+        jMenuVacunatorio.setText("Ver vacunatorios");
+        jMenuVacunatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuVacunatorioActionPerformed(evt);
+            }
+        });
+        jMenuSistema.add(jMenuVacunatorio);
 
         jMenuBar1.add(jMenuSistema);
 
@@ -206,6 +215,14 @@ public class vistaEscritorio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFiltrarListarCitaActionPerformed
 
+    private void jMenuVacunatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuVacunatorioActionPerformed
+        jEscritorio.removeAll();
+        jEscritorio.repaint();
+        vistaListarCentros view = new vistaListarCentros(vd,cd,vtod);
+        jEscritorio.add(view);
+        view.setVisible(true);
+    }//GEN-LAST:event_jMenuVacunatorioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -255,5 +272,6 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuProgramarCita;
     private javax.swing.JMenu jMenuSistema;
     private javax.swing.JMenuItem jMenuVacuna;
+    private javax.swing.JMenuItem jMenuVacunatorio;
     // End of variables declaration//GEN-END:variables
 }
