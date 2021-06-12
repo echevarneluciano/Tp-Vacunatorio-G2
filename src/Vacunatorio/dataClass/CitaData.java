@@ -322,7 +322,7 @@ public class CitaData {
                 ct.setVacunatorio(vacuData.buscarVacunatorio(rs.getInt("idVacunatorio")));
                 ct.setVacuna(vacData.buscarVacunaID(rs.getInt("idVacuna")));
                 ct.setMotivo(rs.getString("motivo"));
-                ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toInstant());
+                //ct.setFechayHora(rs.getTimestamp("fechYhorTurno").toInstant());
                 ct.setEstado(rs.getBoolean("estado"));
                 ct.setId(rs.getInt("idCita"));
                 if(ct.getVacunatorio().getIdVacunatorio()==idCentro)

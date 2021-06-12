@@ -388,8 +388,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
         this.btnLimpiarActionPerformed(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    
-    
+
     private void btnBuscarComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarComboActionPerformed
         dtm2 = (DefaultTableModel) tableVacunatorios.getModel();
         dtm2.setRowCount(0);
@@ -424,8 +423,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
             }        
         }
         return vac;
-    }
-    
+    }    
     public void cargaTabVacunatorios(VacunatorioData vD,CitaData cd){
         dtm = (DefaultTableModel) tableVacunatorios.getModel();
         dtm.setRowCount(0);
@@ -440,7 +438,6 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
             tableVacunatorios.setModel(dtm);
         }   
     }
-    
     public void cargaCombo(VacunatorioData vD){
         comboVacunatorio.removeAllItems();
         comboVacunatorio.addItem(null);
