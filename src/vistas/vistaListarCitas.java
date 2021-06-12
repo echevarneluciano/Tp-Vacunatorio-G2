@@ -103,7 +103,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cita N°", "DNI", "Vacunatorio", "Estado", "Motivo", "Fecha", "Vacuna"
+                "Cita N°", "DNI", "Vacunatorio", "Estado", "Motivo laboral", "Fecha", "Vacuna"
             }
         ) {
             Class[] types = new Class [] {

@@ -59,11 +59,11 @@ public class vistaEscritorio extends javax.swing.JFrame {
         jMenuIngresos = new javax.swing.JMenu();
         jMenuItemIngresarPersona = new javax.swing.JMenuItem();
         jMenuPatologia = new javax.swing.JMenuItem();
-        jMenuVacuna = new javax.swing.JMenuItem();
         jMenuLaboratorio = new javax.swing.JMenuItem();
         jMenuSistema = new javax.swing.JMenu();
         jMenuProgramarCita = new javax.swing.JMenuItem();
         jFiltrarListarCita = new javax.swing.JMenuItem();
+        jMenuVacuna = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,14 +96,6 @@ public class vistaEscritorio extends javax.swing.JFrame {
         });
         jMenuIngresos.add(jMenuPatologia);
 
-        jMenuVacuna.setText("A.B.M. Vacuna");
-        jMenuVacuna.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuVacunaActionPerformed(evt);
-            }
-        });
-        jMenuIngresos.add(jMenuVacuna);
-
         jMenuLaboratorio.setText("A.B.M. Laboratorio");
         jMenuLaboratorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +123,14 @@ public class vistaEscritorio extends javax.swing.JFrame {
             }
         });
         jMenuSistema.add(jFiltrarListarCita);
+
+        jMenuVacuna.setText("Ingresar vacunas");
+        jMenuVacuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuVacunaActionPerformed(evt);
+            }
+        });
+        jMenuSistema.add(jMenuVacuna);
 
         jMenuBar1.add(jMenuSistema);
 
@@ -182,7 +182,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private void jMenuVacunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuVacunaActionPerformed
         jEscritorio.removeAll();
         jEscritorio.repaint();
-        VistaVacuna view = new VistaVacuna(vd,ld);
+        vistaVacuna view = new vistaVacuna(vd,ld);
         jEscritorio.add(view);
         view.setVisible(true);  
         // TODO add your handling code here:
