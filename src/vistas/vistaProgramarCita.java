@@ -53,6 +53,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
         }
         jHora.setValue(7);
         this.llenarJlist();
+        cargaCombo(vtod);
     }
 
     /**
@@ -382,7 +383,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jLimpiarActionPerformed
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
-    int hora=jHora.getValue()-3;
+    int hora=jHora.getValue();
     int minuto=jMinuto.getValue();
     Date fecha=jDate.getDate();
     Date factual=new Date();
@@ -422,6 +423,15 @@ if(encuentra&&!repro) {JOptionPane.showMessageDialog(this,"La persona ya tiene u
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void cargaCombo(VacunatorioData vD){
+        jComboVacunatorio.removeAllItems();
+        jComboVacunatorio.addItem(null);
+        Iterator<Vacunatorio> itVac = vD.obtenerVacunatorios().iterator();
+        while(itVac.hasNext()){
+            Vacunatorio vac=itVac.next();
+            jComboVacunatorio.addItem(vac);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

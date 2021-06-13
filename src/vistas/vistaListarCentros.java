@@ -67,6 +67,8 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
         textNro = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
+        setClosable(true);
+
         jLabel1.setFont(new java.awt.Font("Eras Medium ITC", 0, 18)); // NOI18N
         jLabel1.setText("Listado Vacunatorios");
 
@@ -345,13 +347,14 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
                 textLocal.setText(vac.getLocalidad());
                 JOptionPane.showMessageDialog(this,"El vacunatorio se encuentra cargado, para editar los campos precione en Modificar");
             }else{
-                if(JOptionPane.showConfirmDialog(this,"El vacunatorio no coincide con ninguno en el sistema, desea agregarlo?")==1){
+                if(JOptionPane.showConfirmDialog(this,"El vacunatorio no coincide con ninguno en el sistema, desea agregarlo?")==0){
                     textNombre.setEnabled(false);
                     btnBuscarVacunatorio.setEnabled(false);
                     textCalle.setEnabled(true);
                     textNro.setEnabled(true);
                     textLocal.setEnabled(true);
                     btnGuardar.setVisible(true);
+                    btnGuardar.setEnabled(true);
                 }else
                     this.btnLimpiarActionPerformed(evt);
             }
@@ -366,6 +369,10 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
         textLocal.setEnabled(false);
         btnBuscarVacunatorio.setEnabled(true);
         textNombre.setEnabled(true);
+        textCalle.setText(null);
+        textNro.setText(null);
+        textLocal.setText(null);
+        textNombre.setText(null);
     }//GEN-LAST:event_btnLimpiarActionPerformed
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         textNombre.setEnabled(false);
@@ -382,15 +389,21 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
             vacuData.actualizarVacunatorio(v);
             JOptionPane.showMessageDialog(this,"Vacunatorio actualizado exitosamente");
         }else
+            System.out.println("test here");
+            v.setNombre(textNombre.getText());
+            v.setLocalidad(textLocal.getText());
+            v.setCalle(textCalle.getText());
+            v.setAltura(Integer.parseInt(textNro.getText()));
+            v.setEstado(true);
             vacuData.ingresarVacunatorio(v);
-        this.cargaTabVacunatorios(this.vacuData, this.ciData);
-        cargaCombo(this.vacuData);
-        this.btnLimpiarActionPerformed(evt);
+            this.cargaTabVacunatorios(this.vacuData, this.ciData);
+            cargaCombo(this.vacuData);
+            this.btnLimpiarActionPerformed(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 
     private void btnBuscarComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarComboActionPerformed
-        dtm2 = (DefaultTableModel) tableVacunatorios.getModel();
+        dtm2 = (DefaultTableModel) tableVacunas.getModel();
         dtm2.setRowCount(0);
         Object vacu;
         vacu = comboVacunatorio.getSelectedItem();
@@ -400,7 +413,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
                 row[0] = c.getVacuna().getNroSerie()+"";
                 row[1] = c.getPersona().getDni()+"";
                 dtm2.addRow(row);
-                tableVacunatorios.setModel(dtm2);
+                tableVacunas.setModel(dtm2);
             }   
         }else
             JOptionPane.showMessageDialog(this,"Debe seleccionar un laboratorio para filtrar las vacunas aplicadas en el mismo");
