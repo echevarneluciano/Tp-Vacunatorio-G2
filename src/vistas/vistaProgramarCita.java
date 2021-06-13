@@ -11,10 +11,12 @@ import Vacunatorio.clases.Vacuna;
 import Vacunatorio.clases.Vacunatorio;
 import Vacunatorio.dataClass.CitaData;
 import Vacunatorio.dataClass.PersonaData;
+import Vacunatorio.dataClass.VacunaData;
 import Vacunatorio.dataClass.VacunatorioData;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -29,14 +31,16 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     private PersonaData pd;
     private VacunatorioData vtod;
     private CitaData cd;
+    private VacunaData vd;
     private DefaultTableModel dtm;
     /**
      * Creates new form vistaProgramarCita
      */
-    public vistaProgramarCita(PersonaData pd,VacunatorioData vtod,CitaData cd) {
+    public vistaProgramarCita(PersonaData pd,VacunatorioData vtod,CitaData cd,VacunaData vd) {
         initComponents();
         this.cd=cd;
         this.pd=pd;
+        this.vd=vd;
         this.vtod=vtod;
         Iterator <Persona> it=pd.obtenerPersonas().iterator();
         System.out.println(pd.buscarPersonaDni(11).getApellido());
@@ -70,11 +74,8 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
         jComboPersona = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jDate = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
-        jHora = new com.toedter.components.JSpinField();
         jLabel5 = new javax.swing.JLabel();
-        jMinuto = new com.toedter.components.JSpinField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jComboMotivo = new javax.swing.JComboBox<>();
@@ -94,6 +95,9 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jDate = new com.toedter.calendar.JDateChooser();
+        jHora = new com.toedter.components.JSpinField();
+        jMinuto = new com.toedter.components.JSpinField();
 
         setClosable(true);
         setResizable(true);
@@ -116,13 +120,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Elegir dia:");
 
-        jHora.setMaximum(20);
-        jHora.setMinimum(7);
-
         jLabel5.setText("Hora:");
-
-        jMinuto.setMaximum(59);
-        jMinuto.setMinimum(0);
 
         jLabel6.setText("Minuto:");
 
@@ -211,6 +209,13 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
 
         jLabel17.setText("con solo una");
 
+        jHora.setMaximum(20);
+        jHora.setMinimum(7);
+        jHora.setValue(7);
+
+        jMinuto.setMaximum(59);
+        jMinuto.setMinimum(0);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -244,36 +249,40 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
                                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboPersona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboVacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboVacunatorio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5)
+                                .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jHora, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jGuardar, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel9))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLimpiar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jGuardar)))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -306,10 +315,9 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel12)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,23 +326,24 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jComboVacunatorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLimpiar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jGuardar)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel6))
+                                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(19, 19, 19)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jGuardar)))
+                            .addComponent(jLimpiar))))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -359,9 +368,10 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
         }}
     }
     public void filtrarLosQueFaltaUnaDosis(){
+        this.limpiaJList();
         dtm = (DefaultTableModel) jTable.getModel();
         dtm.setRowCount(0); 
-        for (Persona p : pd.obtenerPersonasInscriptasSinCitas()){                
+        for (Persona p : pd.obtenerPersonasSinCitasConUnaDosis()){                
                     String []row = new String[4];
                     row[0] = Integer.toString(p.getDni());
                     row[1] = p.getNombre();
@@ -370,6 +380,12 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
                     dtm.addRow(row);
                     jTable.setModel(dtm); 
         }
+    }
+    public void limpiaJList(){
+        DefaultTableModel modelo=(DefaultTableModel) jTable.getModel();
+            int filas=jTable.getRowCount();
+            for (int i = 0;filas>i; i++) {
+                modelo.removeRow(0);}
     }
     
     private void jLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLimpiarActionPerformed
@@ -397,6 +413,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     Persona pe=(Persona)jComboPersona.getSelectedItem();
     Vacunatorio va=(Vacunatorio)jComboVacunatorio.getSelectedItem();
     if(pe!=null&&motivo!=null&&va!=null&&fecha!=null){
+    if(vd.obtenerVacunasDisponibles().isEmpty()){JOptionPane.showMessageDialog(this,"No hay dosis disponibles.El turno se posterga por dos semanas");fecha=this.sumarDiasFecha(fecha);}
     fecha.setHours(hora);fecha.setMinutes(minuto);System.out.println(fecha);
     Timestamp timestamp = new Timestamp(fecha.getTime());
     Iterator <Cita> it2=cd.obtenerCitas().iterator();
@@ -413,6 +430,13 @@ if(encuentra&&!repro) {JOptionPane.showMessageDialog(this,"La persona ya tiene u
 //         TODO add your handling code here:
     }//GEN-LAST:event_jGuardarActionPerformed
 
+     public Date sumarDiasFecha(Date fecha){
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(fecha); 
+      calendar.add(Calendar.DAY_OF_YEAR, 14);  
+      return calendar.getTime(); 	
+ }
+    
     private void jInscriptosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jInscriptosActionPerformed
     this.llenarJlist();
         // TODO add your handling code here:

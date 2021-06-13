@@ -183,5 +183,25 @@ public class VacunaData {
         }
     return vacunas;
     }
-    
+    public List<Vacuna> obtenerVacunasDisponibles(){
+        ArrayList<Vacuna> vacunas=new ArrayList<>();
+        Vacuna vac;
+        String sql="SELECT * FROM `vacuna` WHERE estado>0";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); 
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                vac = new Vacuna();
+                Laboratorio lab = BuscarLaboratorio(rs.getInt("idLaboratorio"));
+                vac.setLaboratorio(lab);
+                vac.setNroSerie(rs.getInt("nroSerie"));
+                vac.setEstado(rs.getBoolean("estado"));
+                vac.setIdVacuna(rs.getInt("idVacuna"));
+                vacunas.add(vac);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de vacunas");
+        }
+    return vacunas;
+    }
 }
