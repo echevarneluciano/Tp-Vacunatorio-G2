@@ -58,6 +58,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
         jHora.setValue(7);
         this.llenarJlist();
         cargaCombo(vtod);
+        jVdisponibles.setText(Integer.toString(vd.obtenerNumeroDeVacunasDisponibles()));
     }
 
     /**
@@ -98,6 +99,8 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
         jDate = new com.toedter.calendar.JDateChooser();
         jHora = new com.toedter.components.JSpinField();
         jMinuto = new com.toedter.components.JSpinField();
+        jLabel18 = new javax.swing.JLabel();
+        jVdisponibles = new javax.swing.JTextField();
 
         setClosable(true);
         setResizable(true);
@@ -216,6 +219,15 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
         jMinuto.setMaximum(59);
         jMinuto.setMinimum(0);
 
+        jLabel18.setText("Vacunas disponibles:");
+
+        jVdisponibles.setEnabled(false);
+        jVdisponibles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jVdisponiblesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -282,7 +294,12 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
                                 .addComponent(jLimpiar))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jGuardar)))))
+                                .addComponent(jGuardar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jVdisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -315,13 +332,15 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel12)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel18)
+                            .addComponent(jVdisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -395,6 +414,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
     jHora.setValue(7);
     jMinuto.setValue(0);
     jComboMotivo.setSelectedIndex(-1);
+    jVdisponibles.setText(Integer.toString(vd.obtenerNumeroDeVacunasDisponibles()));
         // TODO add your handling code here:
     }//GEN-LAST:event_jLimpiarActionPerformed
 
@@ -447,6 +467,10 @@ if(encuentra&&!repro) {JOptionPane.showMessageDialog(this,"La persona ya tiene u
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jVdisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVdisponiblesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jVdisponiblesActionPerformed
+
     public void cargaCombo(VacunatorioData vD){
         jComboVacunatorio.removeAllItems();
         jComboVacunatorio.addItem(null);
@@ -475,6 +499,7 @@ if(encuentra&&!repro) {JOptionPane.showMessageDialog(this,"La persona ya tiene u
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -487,5 +512,6 @@ if(encuentra&&!repro) {JOptionPane.showMessageDialog(this,"La persona ya tiene u
     private com.toedter.components.JSpinField jMinuto;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable;
+    private javax.swing.JTextField jVdisponibles;
     // End of variables declaration//GEN-END:variables
 }

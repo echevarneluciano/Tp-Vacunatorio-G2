@@ -204,4 +204,18 @@ public class VacunaData {
         }
     return vacunas;
     }
+    public int obtenerNumeroDeVacunasDisponibles(){
+        int res=0;
+        String sql="select count(idVacuna) as total from vacuna where vacuna.estado>0";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); 
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                res=rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al intentar obtener el listado de vacunas");
+        }
+    return res;
+    }
 }
