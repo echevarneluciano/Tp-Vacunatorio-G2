@@ -333,4 +333,21 @@ public class CitaData {
         }
         return listaAplicadas; 
     }
+    public int cuentaVacunadosPorMes(int mes){
+        int res=0;
+        Conection();
+        String sql="select count(idPersona) as total from citas where month(citas.fechYhorTurno) = ?  and citas.idVacuna is not null";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, mes);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                res=rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al buscar la cita ingresada");
+        }
+        
+        return res;
+    }
 }
