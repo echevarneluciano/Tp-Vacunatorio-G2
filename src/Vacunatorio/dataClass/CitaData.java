@@ -350,4 +350,14 @@ public class CitaData {
         
         return res;
     }
+    public void sumar14DiasAPendientes(){
+        String sql="UPDATE citas SET fechYhorTurno =  date_add(fechYhorTurno,INTERVAL 14 DAY) WHERE idCita in (SELECT idCita  FROM `citas` WHERE idVacuna is null and estado=1 and fechYhorTurno>=now())";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.executeUpdate();
+            ps.close();   
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al modificar el estado de la cita");
+        }
+    }
 }
