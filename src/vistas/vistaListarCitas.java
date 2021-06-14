@@ -9,7 +9,10 @@ import Vacunatorio.clases.*;
 import Vacunatorio.dataClass.CitaData;
 import Vacunatorio.dataClass.PersonaData;
 import Vacunatorio.dataClass.VacunaData;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -329,6 +332,9 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
     Vacuna vi=(Vacuna)jComboVacunas.getSelectedItem();
     if(ci!=null&&vi!=null){
         ci.setVacuna(vi);
+        Date factual=new Date();
+        ci.setDate(new Timestamp(factual.getTime()));
+        ci.setFechayHora(LocalDateTime.now());
         cd.actualizarCita(ci);
         vi.setEstado(false);
         vd.actualizarVacuna(vi);

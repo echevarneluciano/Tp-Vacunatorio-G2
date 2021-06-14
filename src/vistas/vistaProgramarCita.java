@@ -16,9 +16,11 @@ import Vacunatorio.dataClass.VacunatorioData;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -378,10 +380,11 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
         for (Persona p : pd.obtenerPersonas()){
             if(p.isEstado()){
                     String []row = new String[4];
+                    List<Cita> ci=cd.obtenerCitasPorVacunatorioVacunaPersona(p.getIdPersona(), 4);
                     row[0] = Integer.toString(p.getDni());
                     row[1] = p.getNombre();
                     row[2]= p.getApellido();
-//                    if(c.getVacuna().getIdVacuna()==0){row[3] ="Por aplicar";}else row[3] = "Aplicada";
+                    if(!ci.isEmpty()){row[3] ="Citada para aplicar";}else row[3] = "No citado";
                     dtm.addRow(row);
                     jTable.setModel(dtm); 
         }}
@@ -392,10 +395,11 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
         dtm.setRowCount(0); 
         for (Persona p : pd.obtenerPersonasSinCitasConUnaDosis()){                
                     String []row = new String[4];
+                    List<Cita> ci=cd.obtenerCitasPorVacunatorioVacunaPersona(p.getIdPersona(), 4);
                     row[0] = Integer.toString(p.getDni());
                     row[1] = p.getNombre();
                     row[2]= p.getApellido();
-//                    if(c.getVacuna().getIdVacuna()==0){row[3] ="Por aplicar";}else row[3] = "Aplicada";
+                    if(!ci.isEmpty()){row[3] ="Citada para aplicar";}else row[3] = "No citado";
                     dtm.addRow(row);
                     jTable.setModel(dtm); 
         }
