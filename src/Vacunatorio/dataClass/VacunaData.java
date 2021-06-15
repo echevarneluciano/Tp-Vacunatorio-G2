@@ -39,10 +39,8 @@ public class VacunaData {
             ps.setBoolean(3, vac.isEstado());
             ps.executeUpdate();
             ResultSet rs=ps.getGeneratedKeys();
-            if(rs.next()){
+            if(rs.next())
                 vac.setIdVacuna(rs.getInt(1));
-                JOptionPane.showMessageDialog(null,"Vacuna ingresada con exito");
-            }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al guardar la vacuna en la base de datos, puede que el numero de serie esté repetido");

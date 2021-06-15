@@ -24,22 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `citas`
---
-
-CREATE TABLE `citas` (
-  `idPersona` int(11) NOT NULL,
-  `idVacunatorio` int(11) NOT NULL,
-  `fechYhorTurno` datetime NOT NULL,
-  `motivo` varchar(30) NOT NULL,
-  `estado` tinyint(1) NOT NULL,
-  `idCita` int(11) NOT NULL,
-  `idVacuna` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `laboratorio`
 --
 
@@ -158,6 +142,23 @@ INSERT INTO `vacunatorios` (`idVacunatorio`, `nombre`, `localidad`, `calle`, `al
 (1, 'Policlinico San Luis', 'San Luis', 'Porhai ', 123, 0),
 (2, 'Poli VM', 'VM', 'Porhaidos', 321, 0);
 
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla `citas`
+--
+
+CREATE TABLE `citas` (
+  `idPersona` int(11) NOT NULL,
+  `idVacunatorio` int(11) NOT NULL,
+  `fechYhorTurno` datetime NOT NULL,
+  `motivo` varchar(30) NOT NULL,
+  `estado` tinyint(1) NOT NULL,
+  `idCita` int(11) NOT NULL,
+  `idVacuna` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
 --
 -- Índices para tablas volcadas
 --

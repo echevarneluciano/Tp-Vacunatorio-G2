@@ -101,11 +101,11 @@ public class vistaEscritorio extends javax.swing.JFrame {
         jEscritorio.setLayout(jEscritorioLayout);
         jEscritorioLayout.setHorizontalGroup(
             jEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 999, Short.MAX_VALUE)
+            .addGap(0, 1195, Short.MAX_VALUE)
         );
         jEscritorioLayout.setVerticalGroup(
             jEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
+            .addGap(0, 641, Short.MAX_VALUE)
         );
 
         jMenuIngresos.setText("Altas-Modificaciones");
@@ -198,9 +198,7 @@ public class vistaEscritorio extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jEscritorio)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jEscritorio)
         );
 
         pack();

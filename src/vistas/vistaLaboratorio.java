@@ -319,7 +319,7 @@ public class vistaLaboratorio extends javax.swing.JInternalFrame {
 
     private void txtNombKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombKeyTyped
         char val=evt.getKeyChar();
-        if(!Character.isLetter(val)){
+        if(!Character.isLetter(val)&&val!=' '){
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(this, "Este campo solo permite LETRAS");
@@ -328,7 +328,7 @@ public class vistaLaboratorio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombKeyTyped
     private void txtOrigenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrigenKeyTyped
         char val=evt.getKeyChar();
-        if(!Character.isLetter(val)){
+        if(!Character.isLetter(val)&&val!=' '){
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(this, "Este campo solo permite LETRAS");
