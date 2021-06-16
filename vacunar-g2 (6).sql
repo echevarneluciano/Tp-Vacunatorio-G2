@@ -72,14 +72,14 @@ INSERT INTO `patologia` (`idPatologia`, `Nombre`, `estado`) VALUES
 --
 
 CREATE TABLE `persona` (
-  `dni` int(11) NOT NULL,
+  `dni` bigint(20) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `fechaNac` date NOT NULL,
   `localidad` varchar(20) NOT NULL,
   `direccion` varchar(30) NOT NULL,
   `email` varchar(20) NOT NULL,
-  `telefono` int(11) NOT NULL,
+  `telefono` bigint(20) NOT NULL,
   `idPersona` int(11) NOT NULL,
   `idPatologia` int(11) NOT NULL,
   `trabajo` varchar(30) NOT NULL,
