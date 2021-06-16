@@ -311,7 +311,7 @@ public class CitaData {
     public List<Cita> obtenerAplicadasxCentro(int idCentro){
        ArrayList<Cita> listaAplicadas = new ArrayList<>();
        Conection();
-        String sql="SELECT * FROM `citas` WHERE `estado` = 1 and `fechYhorTurno` < now() and `idVacunatorio`=?";
+        String sql="SELECT * FROM `citas` WHERE `fechYhorTurno` <= now() and `idVacunatorio`=?";
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, idCentro);

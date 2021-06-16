@@ -53,8 +53,8 @@ public class VacunaData {
             ps.setInt(1, vac.getNroSerie());
             ps.setBoolean(2, vac.isEstado());
             ps.setInt(3, vac.getIdVacuna());
-            ResultSet rs = ps.getGeneratedKeys();
             ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 vac.setIdVacuna(rs.getInt(1));
                 JOptionPane.showMessageDialog(null,"Vacuna modificada con exito");

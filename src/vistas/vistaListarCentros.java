@@ -295,6 +295,11 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
         });
 
         textNro.setEnabled(false);
+        textNro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textNroKeyTyped(evt);
+            }
+        });
 
         jLabel8.setText("Nro");
 
@@ -397,7 +402,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
         Vacunatorio vac = this.buscaVacu();
         String n = textNombre.getText();
         if(!n.equals("")){
-            if(VacuEsta(vac)){
+            if(vacuData.vacunatorioEsta(n)){
                 btnModificar.setEnabled(true);
                 textCalle.setText(vac.getCalle());
                 textNro.setText(vac.getAltura()+"");
@@ -441,21 +446,29 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
         btnGuardar.setEnabled(true);
     }//GEN-LAST:event_btnModificarActionPerformed
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        Vacunatorio v = this.buscaVacu();
-        if(VacuEsta(v)){
-            vacuData.actualizarVacunatorio(v);
-            JOptionPane.showMessageDialog(this,"Vacunatorio actualizado exitosamente");
-        }else
-            System.out.println("test here");
-            v.setNombre(textNombre.getText());
-            v.setLocalidad(textLocal.getText());
-            v.setCalle(textCalle.getText());
-            v.setAltura(Integer.parseInt(textNro.getText()));
-            v.setEstado(true);
-            vacuData.ingresarVacunatorio(v);
-            this.cargaTabVacunatorios(this.vacuData, this.ciData);
+        if(textNombre.getText()==""||textLocal.getText()==""||textCalle.getText()==""||textNro.getText()=="")
+            JOptionPane.showMessageDialog(this,"Debe rellenar todos los campos");
+        else{
+            Vacunatorio v = new Vacunatorio();
+            String nmb = textNombre.getText(); 
+            if(vacuData.vacunatorioEsta(nmb)){
+                v = vacuData.buscarVacunatorioxNombre(nmb);
+                v.setLocalidad(textLocal.getText());
+                v.setCalle(textCalle.getText());
+                v.setAltura(Integer.valueOf(textNro.getText()));
+                vacuData.actualizarVacunatorio(v);
+            }else{
+                v.setNombre(textNombre.getText());
+                v.setLocalidad(textLocal.getText());
+                v.setCalle(textCalle.getText());
+                v.setAltura(Integer.valueOf(textNro.getText()));
+                v.setEstado(true);
+                vacuData.ingresarVacunatorio(v);
+            }
             cargaCombo(this.vacuData);
-            this.btnLimpiarActionPerformed(evt);
+            cargaTabVacunatorios(this.vacuData, this.ciData);
+            btnLimpiarActionPerformed(evt);
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 
@@ -487,10 +500,15 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBuscarMesActionPerformed
 
-    public boolean VacuEsta(Vacunatorio v){
-        Vacunatorio vacAux = vacuData.buscarVacunatorio(v.getIdVacunatorio());
-        return vacAux.getIdVacunatorio()!=0; 
-    }
+    private void textNroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNroKeyTyped
+        char val=evt.getKeyChar();
+        if(!Character.isDigit(val)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Este campo solo permite NUMEROS POSITIVOS");
+        }
+    }//GEN-LAST:event_textNroKeyTyped
+
     public Vacunatorio buscaVacu(){
         List<Vacunatorio> listaVacunatorios = vacuData.obtenerVacunatorios();
         Vacunatorio vac = new Vacunatorio();
@@ -505,6 +523,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
         }
         return vac;
     }    
+    
     public void cargaTabVacunatorios(VacunatorioData vD,CitaData cd){
         dtm = (DefaultTableModel) tableVacunatorios.getModel();
         dtm.setRowCount(0);

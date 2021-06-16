@@ -55,9 +55,9 @@ public class VacunatorioData {
     }
     
     public void actualizarVacunatorio(Vacunatorio vc){
-        String sql="UPDATE vacunatorios SET nombre=?,localidad=?,calle=?,altura=?,estado=? where idVacunatorio=?";       
+        String sql="UPDATE vacunatorios SET nombre=? , localidad=? , calle=? , altura=? , estado = ? WHERE idVacunatorio =?";   
         try {
-            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, vc.getNombre());
             ps.setString(2, vc.getLocalidad());
             ps.setString(3, vc.getCalle());
@@ -68,6 +68,7 @@ public class VacunatorioData {
             ResultSet rs=ps.getGeneratedKeys();
             if(rs.next()){
                 vc.setIdVacunatorio(rs.getInt(1));
+                JOptionPane.showMessageDialog(null,"Modificado con exito");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -109,6 +110,40 @@ public class VacunatorioData {
         }
         return vc;
     }
+    public Vacunatorio buscarVacunatorioxNombre(String n){
+        Vacunatorio vc = new Vacunatorio();
+        String sql="SELECT * FROM `vacunatorios` WHERE `nombre`=?";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, n);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                vc.setNombre(rs.getString("nombre"));
+                vc.setLocalidad(rs.getString("localidad"));
+                vc.setCalle(rs.getString("calle"));
+                vc.setAltura(rs.getInt("altura"));
+                vc.setEstado(rs.getBoolean("estado"));
+                vc.setIdVacunatorio(rs.getInt("idVacunatorio"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al buscar el vacunatorio ingresado");
+        }
+        return vc;
+    }
+    public boolean vacunatorioEsta(String n){
+        boolean aux = false;
+        String sql="SELECT * FROM `vacunatorios` WHERE `nombre`=?";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, n);
+            ResultSet rs= ps.executeQuery();
+            aux = rs.next(); 
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion al buscar el vacunatorio ingresado");
+        }
+        return aux;
+    }
+    
     
     public List<Vacunatorio> obtenerVacunatorios(){
         ArrayList<Vacunatorio> vcs=new ArrayList<>();        
