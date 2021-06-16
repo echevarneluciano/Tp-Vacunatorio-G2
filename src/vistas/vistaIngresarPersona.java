@@ -298,17 +298,17 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
                                             .addComponent(jTdni))
                                         .addGap(18, 18, 18)
                                         .addComponent(jBuscar)
-                                        .addGap(28, 28, 28)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jBModificar)
-                                        .addGap(34, 34, 34)))
+                                        .addGap(48, 48, 48)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jTexApellido)
-                                    .addGroup(layout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jActivo)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                        .addGap(34, 34, 34)
                                         .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jDate, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -331,7 +331,7 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jActivo))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -437,78 +437,114 @@ public class vistaIngresarPersona extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTdniActionPerformed
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
-    int dni=0;
+    long dni=0;
     float peso=0;
     float altura=0;
-    int telefono=0;
-    try{dni=Integer.parseInt(jTdni.getText());
-    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo dni solo numeros");}
-    try{peso=Float.parseFloat(jTextPeso.getText());
-    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo peso solo numeros");}
-    try{altura=Float.parseFloat(jTextAltura.getText());
-    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo altura solo numeros");}
-    try{telefono=Integer.parseInt(jTextTelefono.getText());
-    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo telefono solo numeros");}
+    long telefono=0;
+    try{
+        dni=Long.parseLong(jTdni.getText());
+    }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this,"Campo dni solo numeros");
+    }
+    try{
+        peso=Float.parseFloat(jTextPeso.getText());
+    }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this,"Campo peso solo numeros");
+    }
+    try{
+        altura=Float.parseFloat(jTextAltura.getText());
+    }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this,"Campo altura solo numeros");
+    }
+    try{
+        telefono=Long.parseLong(jTextTelefono.getText());
+        System.out.println(jTextTelefono.getText());
+    }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this,"Campo telefono solo numeros");
+    }
     String nombre=jTextNombre.getText();
     String ape=jTexApellido.getText();
     String dom=jTexDomicilio.getText();
     String loca=jTextLocalidad.getText();
     String email=jTextEmail.getText();
     Date fecha=jDate.getDate();
+    System.out.println(nombre +" "+ape+" "+dom+" "+loca+" "+ email+" "+telefono+"");
     String ocupa=(String) jComboOcupacion.getSelectedItem();
     Patologia pat=(Patologia) jComboPatologia.getSelectedItem();
-if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||loca==null||email==null||fecha==null||ocupa==null||pat==null)
-{JOptionPane.showMessageDialog(this,"Complete todos los campos");}else{
-    LocalDate fe=fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    Persona pe=new Persona(nombre,ape,email,dni,telefono,ocupa,pat,dom,loca,fe,true,peso,altura);
-    pd.ingresarPersona(pe);
-    this.jLimpiarActionPerformed(evt);
+    if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||loca==null||email==null||fecha==null||ocupa==null||pat==null)
+        JOptionPane.showMessageDialog(this,"Complete todos los campos");
+    else{
+        LocalDate fe=fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Persona pe=new Persona(nombre,ape,email,dni,telefono,ocupa,pat,dom,loca,fe,true,peso,altura);
+        pd.ingresarPersona(pe);
+        this.jLimpiarActionPerformed(evt);
 }
     // TODO add your handling code here:
     }//GEN-LAST:event_jGuardarActionPerformed
 
     private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
-    int dni=0;
-    try{dni=Integer.parseInt(jTdni.getText());
-    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo dni solo numeros");}
-        System.out.println(pd.buscarPersonaDni(dni).getNombre());
-    if(pd.buscarPersonaDni(dni).getApellido()==null){JOptionPane.showMessageDialog(this,"La persona no se encuentra inscripta");
-    this.jLimpiarActionPerformed(evt);jBModificar.setEnabled(false);jGuardar.setEnabled(true);}else{
-    Persona pe=pd.buscarPersonaDni(dni);
-    jDate.setDate(java.sql.Date.valueOf(pe.getFechaNac()));
-    jTextNombre.setText(pe.getNombre());
-    jTexApellido.setText(pe.getApellido());
-    jTexDomicilio.setText(pe.getDireccion());
-    jTextLocalidad.setText(pe.getLocalidad());
-    jTextTelefono.setText(String.valueOf(pe.getTelefono()));
-    jTextEmail.setText(pe.getEmail());
-    jTextPeso.setText(String.valueOf(pe.getPeso()));
-    jTextAltura.setText(String.valueOf(pe.getAltura()));
-    System.out.println(pd.BuscarPatologia(dni));
-    jComboPatologia.setSelectedItem(pe.getPatologias());
-    jComboOcupacion.setSelectedItem(pe.getTrabajo());
-    jBModificar.setEnabled(true);
-    jActivo.setEnabled(true);
-    if(pe.isEstado()){jActivo.setSelected(true);}else{jActivo.setSelected(false);}
-    jGuardar.setEnabled(false);
-    jTdni.setEditable(false);
+    long dni=0;
+    try{
+        dni=Long.parseLong(jTdni.getText());
+    }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this,"Campo dni solo numeros");
+    }
+    if(pd.buscarPersonaDni(dni).getApellido()==null){
+        JOptionPane.showMessageDialog(this,"La persona no se encuentra inscripta");
+        this.jLimpiarActionPerformed(evt);
+        jBModificar.setEnabled(false);
+        jGuardar.setEnabled(true);
+    }else{
+        Persona pe=pd.buscarPersonaDni(dni);
+        jDate.setDate(java.sql.Date.valueOf(pe.getFechaNac()));
+        jTextNombre.setText(pe.getNombre());
+        jTexApellido.setText(pe.getApellido());
+        jTexDomicilio.setText(pe.getDireccion());
+        jTextLocalidad.setText(pe.getLocalidad());
+        jTextTelefono.setText(String.valueOf(pe.getTelefono()));
+        jTextEmail.setText(pe.getEmail());
+        jTextPeso.setText(String.valueOf(pe.getPeso()));
+        jTextAltura.setText(String.valueOf(pe.getAltura()));
+        jComboPatologia.setSelectedItem(pe.getPatologias());
+        jComboOcupacion.setSelectedItem(pe.getTrabajo());
+        jBModificar.setEnabled(true);
+        jActivo.setEnabled(true);
+        if(pe.isEstado())
+            jActivo.setSelected(true);
+        else
+            jActivo.setSelected(false);
+        jGuardar.setEnabled(false);
+        jTdni.setEditable(false);
     }    
         // TODO add your handling code here:
     }//GEN-LAST:event_jBuscarActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-    int dni=0;
+    long dni=0;
     float peso=0;
     float altura=0;
-    int telefono=0;
-    try{dni=Integer.parseInt(jTdni.getText());
-    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo dni solo numeros");}
-    try{peso=Float.parseFloat(jTextPeso.getText());
-    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo peso solo numeros");}
-    try{altura=Float.parseFloat(jTextAltura.getText());
-    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo altura solo numeros");}
-    try{telefono=Integer.parseInt(jTextTelefono.getText());
-    }catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Campo telefono solo numeros");}
+    long telefono=0;
+    try{
+        dni=Long.parseLong(jTdni.getText());
+    }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this,"Campo dni solo numeros");
+    }
+    try{
+        peso=Float.parseFloat(jTextPeso.getText());
+    }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this,"Campo peso solo numeros");
+    }
+    try{
+        altura=Float.parseFloat(jTextAltura.getText());
+    }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this,"Campo altura solo numeros");
+    }
+    try{
+        telefono=Long.parseLong(jTextTelefono.getText());
+        System.out.println(jTextTelefono.getText());
+    }catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this,"Campo telefono solo numeros");
+    }
     String nombre=jTextNombre.getText();
     String ape=jTexApellido.getText();
     String dom=jTexDomicilio.getText();
@@ -518,7 +554,8 @@ if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||
     String ocupa=(String) jComboOcupacion.getSelectedItem();
     Patologia pat=(Patologia) jComboPatologia.getSelectedItem();
 if(nombre==null||dni==0||peso==0||altura==0||telefono==0||ape==null||dom==null||loca==null||email==null||fecha==null||ocupa==null||pat==null)
-{JOptionPane.showMessageDialog(this,"Complete todos los campos");}else{
+    JOptionPane.showMessageDialog(this,"Complete todos los campos");
+else{
     LocalDate fe=fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     Persona pe=new Persona(nombre,ape,email,dni,telefono,ocupa,pat,dom,loca,fe,jActivo.isSelected(),peso,altura);
     pd.modificarPersona(pe);

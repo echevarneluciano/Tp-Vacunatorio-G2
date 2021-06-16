@@ -7,6 +7,7 @@ package vistas;
 
 import Vacunatorio.clases.Patologia;
 import Vacunatorio.dataClass.PatologiaData;
+import java.awt.event.KeyEvent;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
@@ -56,6 +57,11 @@ public class vistaPatologiaABM extends javax.swing.JInternalFrame {
                 jTextNombreActionPerformed(evt);
             }
         });
+        jTextNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextNombreKeyTyped(evt);
+            }
+        });
 
         jActivo.setText("Activa si/no");
         jActivo.setEnabled(false);
@@ -101,27 +107,27 @@ public class vistaPatologiaABM extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLimpiar)
-                                .addGap(22, 22, 22)
-                                .addComponent(jGuardar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBuscar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jModificar)))))
-                .addGap(0, 30, Short.MAX_VALUE))
+                        .addComponent(jModificar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jGuardar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBuscar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLimpiar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,11 +139,11 @@ public class vistaPatologiaABM extends javax.swing.JInternalFrame {
                     .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBuscar)
                     .addComponent(jActivo)
-                    .addComponent(jModificar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                    .addComponent(jLimpiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jGuardar)
-                    .addComponent(jLimpiar))
+                    .addComponent(jModificar))
                 .addGap(32, 32, 32))
         );
 
@@ -155,27 +161,38 @@ public class vistaPatologiaABM extends javax.swing.JInternalFrame {
     private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
     String nom=jTextNombre.getText();
     if(!nom.trim().isEmpty()){
-    if(pada.buscarPatologiaPorNombre(nom).getNombre()==null){JOptionPane.showMessageDialog(this,"La patologia no se encuetra cargada");
-    this.jLimpiarActionPerformed(evt);}else{
-    JOptionPane.showMessageDialog(this,"Modificar patologia");
-    jGuardar.setEnabled(false);
-    jModificar.setEnabled(true);
-    p=pada.buscarPatologiaPorNombre(nom);
-    jActivo.setEnabled(true);
-    if(p.isEstado()){jActivo.setSelected(true);}else{jActivo.setSelected(false);}
-    }}
+        if(pada.buscarPatologiaPorNombre(nom).getNombre()==null)
+            JOptionPane.showMessageDialog(this,"La patologia no se encuetra en la base, presione guardar para almacenarla");
+        else{
+            JOptionPane.showMessageDialog(this,"Modificar patologia");
+            jGuardar.setEnabled(false);
+            jModificar.setEnabled(true);
+            p=pada.buscarPatologiaPorNombre(nom);
+            jActivo.setEnabled(true);
+            if(p.isEstado())
+                jActivo.setSelected(true);
+            else
+                jActivo.setSelected(false);
+        }
+    }
         // TODO add your handling code here:
     }//GEN-LAST:event_jBuscarActionPerformed
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
     String nom=jTextNombre.getText();
     if(!nom.trim().isEmpty()){
-    if(pada.buscarPatologiaPorNombre(nom).getNombre()!=null){JOptionPane.showMessageDialog(this,"La patologia se encuetra cargada");
-    this.jLimpiarActionPerformed(evt);}else{
-    Patologia pa=new Patologia(nom,true);
-    pada.ingresarPatologia(pa);
-    this.jLimpiarActionPerformed(evt);
-    }}else {JOptionPane.showMessageDialog(this,"Complete campo nombre");this.jLimpiarActionPerformed(evt);}
+        if(pada.buscarPatologiaPorNombre(nom).getNombre()!=null){
+            JOptionPane.showMessageDialog(this,"La patologia se encuetra cargada");
+            this.jLimpiarActionPerformed(evt);
+        }else{
+            Patologia pa=new Patologia(nom,true);
+            pada.ingresarPatologia(pa);
+            this.jLimpiarActionPerformed(evt);
+        }
+    }else{
+        JOptionPane.showMessageDialog(this,"Complete campo nombre");
+        this.jLimpiarActionPerformed(evt);
+    }
 //         TODO add your handling code here:
     }//GEN-LAST:event_jGuardarActionPerformed
 
@@ -199,6 +216,15 @@ public class vistaPatologiaABM extends javax.swing.JInternalFrame {
     }else {JOptionPane.showMessageDialog(this,"Campo nombre vacio");this.jLimpiarActionPerformed(evt);} 
         // TODO add your handling code here:
     }//GEN-LAST:event_jModificarActionPerformed
+
+    private void jTextNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNombreKeyTyped
+        char val=evt.getKeyChar();
+        if(!Character.isLetter(val)&&val!=' '&& val != KeyEvent.VK_BACK_SPACE){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Este campo solo permite LETRAS");
+        }
+    }//GEN-LAST:event_jTextNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

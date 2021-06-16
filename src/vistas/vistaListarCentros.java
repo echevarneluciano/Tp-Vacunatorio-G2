@@ -85,7 +85,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nombre", "Localidad", "Direccion", "Dosis aplicadas"
+                "Nombre", "Localidad", "Direccion", "Aplicadas"
             }
         ) {
             Class[] types = new Class [] {
@@ -103,6 +103,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableVacunatorios.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableVacunatorios);
 
         jLabel12.setText("*dosis aplicadas en el dia de hoy");
@@ -114,9 +115,9 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                .addGap(96, 96, 96)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
@@ -237,7 +238,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
                     .addComponent(btnBuscarCombo))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +249,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel10)
                         .addComponent(jMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Eras Medium ITC", 0, 18)); // NOI18N
@@ -475,6 +476,7 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
         dtm2.setRowCount(0);
         Object vacu;
         vacu = comboVacunatorio.getSelectedItem();
+        boolean aux=false;
         if(vacu instanceof Vacunatorio){        
             for(Cita c: this.ciData.obtenerAplicadasxCentro(((Vacunatorio) vacu).getIdVacunatorio())){
                 String []row = new String[2];
@@ -482,7 +484,10 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
                 row[1] = c.getPersona().getDni()+"";
                 dtm2.addRow(row);
                 tableVacunas.setModel(dtm2);
-            }   
+                aux = true;
+            }
+            if(!aux)
+                JOptionPane.showMessageDialog(this,"El vacunatorio solicitadoaun no registra vacunas aplicadas, seleccione otro");
         }else
             JOptionPane.showMessageDialog(this,"Debe seleccionar un laboratorio para filtrar las vacunas aplicadas en el mismo");
     }//GEN-LAST:event_btnBuscarComboActionPerformed
@@ -500,7 +505,6 @@ public class vistaListarCentros extends javax.swing.JInternalFrame {
 
     private void textNroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNroKeyTyped
         char val=evt.getKeyChar();
-        
         if(!Character.isDigit(val)&& val != KeyEvent.VK_BACK_SPACE){
             getToolkit().beep();
             evt.consume();

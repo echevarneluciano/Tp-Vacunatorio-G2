@@ -282,7 +282,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
         for (Cita c : cd.obtenerCitas()){                
                     String []row = new String[7];
                     row[0] = Integer.toString(c.getId());
-                    row[1] = Integer.toString(c.getPersona().getDni());
+                    row[1] = Long.toString(c.getPersona().getDni());
                     row[2]= c.getVacunatorio().getNombre();
                     if(c.getVacuna().getIdVacuna()==0){row[3] ="Por aplicar";}else row[3] = "Aplicada";
                     row[4]=c.getMotivo();
@@ -302,7 +302,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
             if(c.isEstado()){
                     String []row = new String[7];
                     row[0] = Integer.toString(c.getId());
-                    row[1] = Integer.toString(c.getPersona().getDni());
+                    row[1] = Long.toString(c.getPersona().getDni());
                     row[2]= c.getVacunatorio().getNombre();
                     if(c.getVacuna().getIdVacuna()==0){row[3] ="Por aplicar";}else row[3] = "Aplicada";
                     row[4]=c.getMotivo();
@@ -369,7 +369,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
                     if(!c.isEstado()){
                     String []row = new String[7];
                     row[0] = Integer.toString(c.getId());
-                    row[1] = Integer.toString(c.getPersona().getDni());
+                    row[1] = Long.toString(c.getPersona().getDni());
                     row[2]= c.getVacunatorio().getNombre();
                     if(c.getVacuna().getIdVacuna()==0){row[3] ="Por aplicar";}else row[3] = "Aplicada";
                     row[4]=c.getMotivo();
@@ -389,7 +389,7 @@ public class vistaListarCitas extends javax.swing.JInternalFrame {
             if(c.isEstado()){
                     String []row = new String[7];
                     row[0] = Integer.toString(c.getId());
-                    row[1] = Integer.toString(c.getPersona().getDni());
+                    row[1] = Long.toString(c.getPersona().getDni());
                     row[2]= c.getVacunatorio().getNombre();
                     if(c.getVacuna().getIdVacuna()==0){row[3] ="Por aplicar";}else row[3] = "Aplicada";
                     row[4]=c.getMotivo();

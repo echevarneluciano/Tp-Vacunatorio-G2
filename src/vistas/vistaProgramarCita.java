@@ -400,7 +400,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
             if(p.isEstado()){
                     String []row = new String[4];
                     List<Cita> ci=cd.obtenerCitasPorVacunatorioVacunaPersona(p.getIdPersona(), 4);
-                    row[0] = Integer.toString(p.getDni());
+                    row[0] = Long.toString(p.getDni());
                     row[1] = p.getNombre();
                     row[2]= p.getApellido();
                     if(!ci.isEmpty()){row[3] ="Citada para aplicar";}else row[3] = "No citado";
@@ -415,7 +415,7 @@ public class vistaProgramarCita extends javax.swing.JInternalFrame {
         for (Persona p : pd.obtenerPersonasSinCitasConUnaDosis()){                
                     String []row = new String[4];
                     List<Cita> ci=cd.obtenerCitasPorVacunatorioVacunaPersona(p.getIdPersona(), 4);
-                    row[0] = Integer.toString(p.getDni());
+                    row[0] = Long.toString(p.getDni());
                     row[1] = p.getNombre();
                     row[2]= p.getApellido();
                     if(!ci.isEmpty()){row[3] ="Citada para aplicar";}else row[3] = "No citado";

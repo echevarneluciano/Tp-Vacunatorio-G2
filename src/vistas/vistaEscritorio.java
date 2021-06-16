@@ -66,16 +66,14 @@ public class vistaEscritorio extends javax.swing.JFrame {
         jEscritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuIngresos = new javax.swing.JMenu();
+        jMenuVacuna = new javax.swing.JMenuItem();
         jMenuItemIngresarPersona = new javax.swing.JMenuItem();
         jMenuPatologia = new javax.swing.JMenuItem();
         jMenuLaboratorio = new javax.swing.JMenuItem();
-        jMenuVacuna1 = new javax.swing.JMenuItem();
-        jMenuVacunatorio1 = new javax.swing.JMenuItem();
         jMenuSistema = new javax.swing.JMenu();
+        jMenuVacunatorio = new javax.swing.JMenuItem();
         jMenuProgramarCita = new javax.swing.JMenuItem();
         jFiltrarListarCita = new javax.swing.JMenuItem();
-        jMenuVacunatorio = new javax.swing.JMenuItem();
-        jMenuVacuna = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar2.add(jMenu1);
@@ -110,6 +108,14 @@ public class vistaEscritorio extends javax.swing.JFrame {
 
         jMenuIngresos.setText("Altas-Modificaciones");
 
+        jMenuVacuna.setText("Añadir vacunas");
+        jMenuVacuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuVacunaActionPerformed(evt);
+            }
+        });
+        jMenuIngresos.add(jMenuVacuna);
+
         jMenuItemIngresarPersona.setText("A.B.M. Persona");
         jMenuItemIngresarPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,25 +140,17 @@ public class vistaEscritorio extends javax.swing.JFrame {
         });
         jMenuIngresos.add(jMenuLaboratorio);
 
-        jMenuVacuna1.setText("A.B.M. Vacunas");
-        jMenuVacuna1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuVacuna1ActionPerformed(evt);
-            }
-        });
-        jMenuIngresos.add(jMenuVacuna1);
-
-        jMenuVacunatorio1.setText("A.B.M. Vacunatorios");
-        jMenuVacunatorio1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuVacunatorio1ActionPerformed(evt);
-            }
-        });
-        jMenuIngresos.add(jMenuVacunatorio1);
-
         jMenuBar1.add(jMenuIngresos);
 
         jMenuSistema.setText("Citar-Vacunar-Listar");
+
+        jMenuVacunatorio.setText("Vacunatorios");
+        jMenuVacunatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuVacunatorioActionPerformed(evt);
+            }
+        });
+        jMenuSistema.add(jMenuVacunatorio);
 
         jMenuProgramarCita.setText("Programar cita");
         jMenuProgramarCita.addActionListener(new java.awt.event.ActionListener() {
@@ -169,22 +167,6 @@ public class vistaEscritorio extends javax.swing.JFrame {
             }
         });
         jMenuSistema.add(jFiltrarListarCita);
-
-        jMenuVacunatorio.setText("Listar vacunatorios");
-        jMenuVacunatorio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuVacunatorioActionPerformed(evt);
-            }
-        });
-        jMenuSistema.add(jMenuVacunatorio);
-
-        jMenuVacuna.setText("Listar vacunas");
-        jMenuVacuna.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuVacunaActionPerformed(evt);
-            }
-        });
-        jMenuSistema.add(jMenuVacuna);
 
         jMenuBar1.add(jMenuSistema);
 
@@ -266,24 +248,6 @@ public class vistaEscritorio extends javax.swing.JFrame {
         view.setVisible(true);
     }//GEN-LAST:event_jMenuVacunatorioActionPerformed
 
-    private void jMenuVacuna1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuVacuna1ActionPerformed
-        jEscritorio.removeAll();
-        jEscritorio.repaint();
-        vistaVacuna view = new vistaVacuna(vd,ld);
-        jEscritorio.add(view);
-        view.setVisible(true); 
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuVacuna1ActionPerformed
-
-    private void jMenuVacunatorio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuVacunatorio1ActionPerformed
-        jEscritorio.removeAll();
-        jEscritorio.repaint();
-        vistaListarCentros view = new vistaListarCentros(vd,cd,vtod);
-        jEscritorio.add(view);
-        view.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuVacunatorio1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -342,8 +306,6 @@ public class vistaEscritorio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuProgramarCita;
     private javax.swing.JMenu jMenuSistema;
     private javax.swing.JMenuItem jMenuVacuna;
-    private javax.swing.JMenuItem jMenuVacuna1;
     private javax.swing.JMenuItem jMenuVacunatorio;
-    private javax.swing.JMenuItem jMenuVacunatorio1;
     // End of variables declaration//GEN-END:variables
 }

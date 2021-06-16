@@ -35,14 +35,14 @@ public class PersonaData {
         String sql="INSERT INTO `persona`(`dni`, `nombre`, `apellido`, `fechaNac`, `localidad`, `direccion`, `email`, `telefono`, `idPatologia`, `trabajo`, `estado`, `peso`, `altura`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";       
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, pe.getDni());
+            ps.setLong(1, pe.getDni());
             ps.setString(2, pe.getNombre());
             ps.setString(3, pe.getApellido());
             ps.setDate(4, Date.valueOf(pe.getFechaNac()));
             ps.setString(5, pe.getLocalidad());
             ps.setString(6, pe.getDireccion());
             ps.setString(7, pe.getEmail());
-            ps.setInt(8, pe.getTelefono());
+            ps.setLong(8, pe.getTelefono());
             ps.setInt(9, pe.getPatologias().getIdPatologia());
             ps.setString(10, pe.getTrabajo());
             ps.setBoolean(11, pe.isEstado());
@@ -63,20 +63,20 @@ public class PersonaData {
         String sql="UPDATE `persona` SET `dni`=?,`nombre`=?,`apellido`=?,`fechaNac`=?,`localidad`=?,`direccion`=?,`email`=?,`telefono`=?,`idPatologia`=?,`trabajo`=?,`estado`=?,`peso`=?,`altura`=? WHERE persona.dni=?";
     try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, pe.getDni());
+            ps.setLong(1, pe.getDni());
             ps.setString(2, pe.getNombre());
             ps.setString(3, pe.getApellido());
             ps.setDate(4, Date.valueOf(pe.getFechaNac()));
             ps.setString(5, pe.getLocalidad());
             ps.setString(6, pe.getDireccion());
             ps.setString(7, pe.getEmail());
-            ps.setInt(8, pe.getTelefono());
+            ps.setLong(8, pe.getTelefono());
             ps.setInt(9, pe.getPatologias().getIdPatologia());
             ps.setString(10, pe.getTrabajo());
             ps.setBoolean(11, pe.isEstado());
             ps.setFloat(12, pe.getPeso());
             ps.setFloat(13, pe.getAltura());
-            ps.setInt(14, pe.getDni());
+            ps.setLong(14, pe.getDni());
             ps.executeUpdate();
             ResultSet rs=ps.getGeneratedKeys();
             if(rs.next()){
@@ -88,18 +88,18 @@ public class PersonaData {
             JOptionPane.showMessageDialog(null,"Error de conexion en metodo ingresarPersona.");
         }
     }
-    public Persona buscarPersonaDni(int dni){
+    public Persona buscarPersonaDni(long dni){
         Persona pe=new Persona();
         String sql="SELECT * FROM `persona` WHERE persona.dni=?";
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, dni);
+            ps.setLong(1,dni);
             ResultSet rs= ps.executeQuery();
             if(rs.next()){
                 pe.setAltura(rs.getFloat("altura"));
                 pe.setApellido(rs.getString("apellido"));
                 pe.setDireccion(rs.getString("direccion"));
-                pe.setDni(rs.getInt("dni"));
+                pe.setDni(rs.getLong("dni"));
                 pe.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 pe.setEmail(rs.getString("email"));
                 pe.setEstado(rs.getBoolean("estado"));
@@ -108,11 +108,11 @@ public class PersonaData {
                 pe.setNombre(rs.getString("nombre"));
                 pe.setPatologias(this.BuscarPatologiaPorDni(rs.getInt("dni")));
                 pe.setPeso(rs.getFloat("peso"));
-                pe.setTelefono(rs.getInt("telefono"));
+                pe.setTelefono(rs.getLong("telefono"));
                 pe.setTrabajo(rs.getString("trabajo"));
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion.");
+            JOptionPane.showMessageDialog(null,"Error de conexion al buscar la persona");
         }
         return pe;
     }
@@ -128,7 +128,7 @@ public class PersonaData {
                 pe.setAltura(rs.getFloat("altura"));
                 pe.setApellido(rs.getString("apellido"));
                 pe.setDireccion(rs.getString("direccion"));
-                pe.setDni(rs.getInt("dni"));
+                pe.setDni(rs.getLong("dni"));
                 pe.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 pe.setEmail(rs.getString("email"));
                 pe.setEstado(rs.getBoolean("estado"));
@@ -137,7 +137,7 @@ public class PersonaData {
                 pe.setNombre(rs.getString("nombre"));
                 pe.setPatologias(this.BuscarPatologiaPorDni(rs.getInt("dni")));
                 pe.setPeso(rs.getFloat("peso"));
-                pe.setTelefono(rs.getInt("telefono"));
+                pe.setTelefono(rs.getLong("telefono"));
                 pe.setTrabajo(rs.getString("trabajo"));
             }
         } catch (SQLException ex) {
@@ -158,7 +158,7 @@ public class PersonaData {
                 pe.setAltura(rs.getFloat("altura"));
                 pe.setApellido(rs.getString("apellido"));
                 pe.setDireccion(rs.getString("direccion"));
-                pe.setDni(rs.getInt("dni"));
+                pe.setDni(rs.getLong("dni"));
                 pe.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 pe.setEmail(rs.getString("email"));
                 pe.setEstado(rs.getBoolean("estado"));
@@ -167,7 +167,7 @@ public class PersonaData {
                 pe.setNombre(rs.getString("nombre"));
                 pe.setPatologias(this.BuscarPatologiaPorDni(rs.getInt("dni")));
                 pe.setPeso(rs.getFloat("peso"));
-                pe.setTelefono(rs.getInt("telefono"));
+                pe.setTelefono(rs.getLong("telefono"));
                 pe.setTrabajo(rs.getString("trabajo"));
                 personas.add(pe);
             }
@@ -193,12 +193,12 @@ public class PersonaData {
         }
     return pato;
     }
-    public Patologia BuscarPatologiaPorDni(int dni){
+    public Patologia BuscarPatologiaPorDni(long dni){
         Patologia pato=new Patologia();
         String sql = "SELECT * FROM patologia AS pa, persona AS per WHERE pa.idPatologia=per.idPatologia AND per.dni=?";
         try{
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, dni);
+            ps.setLong(1, dni);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 pato.setEstado(rs.getBoolean("estado"));
@@ -222,7 +222,7 @@ public class PersonaData {
                 pe.setAltura(rs.getFloat("altura"));
                 pe.setApellido(rs.getString("apellido"));
                 pe.setDireccion(rs.getString("direccion"));
-                pe.setDni(rs.getInt("dni"));
+                pe.setDni(rs.getLong("dni"));
                 pe.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 pe.setEmail(rs.getString("email"));
                 pe.setEstado(rs.getBoolean("estado"));
@@ -231,7 +231,7 @@ public class PersonaData {
                 pe.setNombre(rs.getString("nombre"));
                 pe.setPatologias(this.BuscarPatologiaPorDni(rs.getInt("dni")));
                 pe.setPeso(rs.getFloat("peso"));
-                pe.setTelefono(rs.getInt("telefono"));
+                pe.setTelefono(rs.getLong("telefono"));
                 pe.setTrabajo(rs.getString("trabajo"));
                 personas.add(pe);
             }
@@ -252,7 +252,7 @@ public class PersonaData {
                 pe.setAltura(rs.getFloat("altura"));
                 pe.setApellido(rs.getString("apellido"));
                 pe.setDireccion(rs.getString("direccion"));
-                pe.setDni(rs.getInt("dni"));
+                pe.setDni(rs.getLong("dni"));
                 pe.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 pe.setEmail(rs.getString("email"));
                 pe.setEstado(rs.getBoolean("estado"));
@@ -261,7 +261,7 @@ public class PersonaData {
                 pe.setNombre(rs.getString("nombre"));
                 pe.setPatologias(this.BuscarPatologiaPorDni(rs.getInt("dni")));
                 pe.setPeso(rs.getFloat("peso"));
-                pe.setTelefono(rs.getInt("telefono"));
+                pe.setTelefono(rs.getLong("telefono"));
                 pe.setTrabajo(rs.getString("trabajo"));
                 personas.add(pe);
             }

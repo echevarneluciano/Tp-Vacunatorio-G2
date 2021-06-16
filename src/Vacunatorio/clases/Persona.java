@@ -16,8 +16,8 @@ public class Persona {
     private String nombre;
     private String apellido;
     private String email;
-    private int dni;
-    private int telefono;
+    private long dni;
+    private long telefono;
     private String trabajo;
     private Patologia patologias;
     private String direccion;
@@ -29,7 +29,7 @@ public class Persona {
 
     public Persona() {
     }
-    public Persona(String nombre, String apellido, String email, int dni, int telefono, String trabajo, Patologia patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado,float peso,float altura) {
+    public Persona(String nombre, String apellido, String email, long dni, long telefono, String trabajo, Patologia patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado,float peso,float altura) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -44,7 +44,7 @@ public class Persona {
         this.peso=peso;
         this.altura=altura;
     }
-    public Persona(int idPersona, String nombre, String apellido, String email, int dni, int telefono, String trabajo, Patologia patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado,float peso,float altura) {
+    public Persona(int idPersona, String nombre, String apellido, String email, long dni, long telefono, String trabajo, Patologia patologias, String direccion, String localidad, LocalDate fechaNac,boolean estado,float peso,float altura) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -97,10 +97,10 @@ public class Persona {
     public String getEmail() {
         return email;
     }
-    public int getDni() {
+    public long getDni() {
         return dni;
     }
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
     public String getTrabajo() {
@@ -131,10 +131,10 @@ public class Persona {
     public void setEmail(String email) {
         this.email = email;
     }
-    public void setDni(int dni) {
+    public void setDni(long dni) {
         this.dni = dni;
     }
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
     public void setTrabajo(String trabajo) {
@@ -160,10 +160,11 @@ public class Persona {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + this.dni;
+        int hash = 7;
+        hash = 83 * hash + (int) (this.dni ^ (this.dni >>> 32));
         return hash;
     }
+
 
     @Override
     public boolean equals(Object obj) {

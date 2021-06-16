@@ -72,6 +72,14 @@
             <Property name="text" type="java.lang.String" value="Altas-Modificaciones"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuVacuna">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A&#xf1;adir vacunas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuVacunaActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemIngresarPersona">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A.B.M. Persona"/>
@@ -96,22 +104,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuLaboratorioActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuVacuna1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="A.B.M. Vacunas"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuVacuna1ActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuVacunatorio1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="A.B.M. Vacunatorios"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuVacunatorio1ActionPerformed"/>
-              </Events>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenuSistema">
@@ -119,6 +111,14 @@
             <Property name="text" type="java.lang.String" value="Citar-Vacunar-Listar"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuVacunatorio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Vacunatorios"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuVacunatorioActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuProgramarCita">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Programar cita"/>
@@ -133,30 +133,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFiltrarListarCitaActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuVacunatorio">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Listar vacunatorios"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuVacunatorioActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuVacuna">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Listar vacunas"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuVacunaActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuVacuna">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Listar vacunas"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuVacunaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
