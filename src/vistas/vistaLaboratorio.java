@@ -8,6 +8,7 @@ package vistas;
 import Vacunatorio.dataClass.LaboratorioData;
 
 import Vacunatorio.clases.*;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -319,7 +320,7 @@ public class vistaLaboratorio extends javax.swing.JInternalFrame {
 
     private void txtNombKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombKeyTyped
         char val=evt.getKeyChar();
-        if(!Character.isLetter(val)&&val!=' '){
+        if(!Character.isLetter(val)&&val!=' '&& val != KeyEvent.VK_BACK_SPACE){
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(this, "Este campo solo permite LETRAS");
@@ -328,7 +329,7 @@ public class vistaLaboratorio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombKeyTyped
     private void txtOrigenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrigenKeyTyped
         char val=evt.getKeyChar();
-        if(!Character.isLetter(val)&&val!=' '){
+        if(!Character.isLetter(val)&&val!=' '&& val != KeyEvent.VK_BACK_SPACE){
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(this, "Este campo solo permite LETRAS");
